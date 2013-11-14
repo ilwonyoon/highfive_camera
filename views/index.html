@@ -3,11 +3,21 @@
 
     <div class="span9">
 
+	    	<h1>Your Score is : <span id="display_score">score goes here</span></h1>
+			<video id="thevideo" width="320" height="240" autoplay style="display:none"></video>
+			<canvas id="thecanvas" width="320" height="240"></canvas>
+			<canvas id="audiograph" width="320" height="60" style="display:none"></canvas >
+
+			<input type = "button" value ="Audio Graph On" onclick ="videoOn();">
+			<input id ="turnoff" type = "button" value ="Audio Graph Off" onclick ="videoOff();">
+			
+			<input type = "button" value ="Retake" onclick ="retake();">
+
 
     	{{#photos}}
     	
     	<a href="/photo/{{_id}}">
-    		<img src="https://s3.amazonaws.com/dwd_uploads/{{image}}" width="300" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{caption}}" title="{{title}}">
+    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="300" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{caption}}" title="{{title}}">
     	</a>
 	
     	{{/photos}}

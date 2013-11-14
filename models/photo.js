@@ -11,3 +11,13 @@ var photoSchema = new Schema({
 
 // export Page model
 module.exports = mongoose.model('Photo', photoSchema);
+
+// //My hifive model
+// var photoSchema = new Schema({
+
+// 	person1:  String,
+// 	person2:  String, 
+// 	urltitle : String,
+// 	image : String,
+// 	create :{type : Date, default : Date.now }
+// });
