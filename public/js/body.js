@@ -82,8 +82,8 @@
 					// thecontext_audio.lineWidth=0.1;
 					// thecontext_audio.stroke();
 
-					thecontext_audio.fillStyle = "rgb(0,0,255);"
-					thecontext_audio.fillRect(i*10,audiograph.height-frequencies[i]/5, 10, audiograph.height);	
+					thecontext_audio.fillStyle = "rgb(200,124,255);"
+					thecontext_audio.fillRect(i*10,audiograph.height-frequencies[i]/4, 7, audiograph.height);	
 
 
 					if(frequencies[i] >50) {
@@ -101,7 +101,7 @@
 			var isPictureTaken = false;
 			var startTime;
 			var endTime;
-
+			var numberOfPicture =0;
 
 			var takePicture = function(){
 				if(isPictureTaken === false){
@@ -112,12 +112,16 @@
 					var dataUrl = thecanvas.toDataURL('image/webp', 1);
 
 					var picture = document.createElement('img');
+					picture.style.width ="120px";
+					
 
 					picture.src = dataUrl;
 
-					document.body.appendChild(picture);
-					console.log("add image element to document");
-					console.log("Picture taken");
+					document.getElementById('gallery').appendChild(picture);
+					// console.log("add image element to document");
+					// console.log("Picture taken");
+					numberOfPicture+=1;
+					document.getElementById('numberOfPicture').innerHTML =numberOfPicture;
 					getScore();
 
 					//document.getElementById("thecanvas").style.display="none";
@@ -125,7 +129,7 @@
 				else{
 					endTime = new Date().getTime();
 					//if 3 seconds is passed, enable retake picture
-					if(Math.abs(startTime-endTime || isPictureTaken ===true) > 3000) {
+					if(Math.abs(startTime-endTime || isPictureTaken ===true) > 1000) {
 						console.log(startTime-endTime);
 						isPictureTaken = false;
 
@@ -147,6 +151,7 @@
 				document.getElementById('display_score').innerHTML= score;
 				
 			}
+
 
 			var videoOff = function(){
 				document.getElementById("audiograph").style.display="none";

@@ -5,15 +5,58 @@
    ========================================================================== */
 
 
+body{
+	background: black;
+	color : white;
+}
 
 
 
+div.gallery img
+{	
+	margin: 5px;
+	padding:5px;
+	border :1px solid white;
+	height : 120px;
+	width : auto;
+	float : left;
+	text-align: center;
+	overflow: auto;
+	max-height: 300px;
+}
+div.gallery img:hover
+{
+	opacity: 0.5;
+}
 
 
+ul
+{
+	list-style-type: none;
+	margin:0;
+	padding:0;
+	overflow: hidden;
+}
+li
+{
+	float:right;
+}
+a:link, a:visited
+{
+	display:block;
+	width:80px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: black;
+	text-align: center;
+	padding:0px;
+	text-decoration: none;
+	text-transform: uppercase;
 
-
-
-
+}
+a:hover, a:active{
+	background-color: ##3B3B3B;
+}
 
 
 
