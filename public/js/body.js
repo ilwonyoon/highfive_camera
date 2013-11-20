@@ -31,7 +31,8 @@
 
 					thecanvas = document.getElementById('thecanvas');
 					thecontext = thecanvas.getContext('2d');
-					thecontext.drawImage(video,0,0,video.width,video.height);
+					thecontext.scale(-1,1);
+					thecontext.drawImage(video,video.width * -1,0,video.width,video.height);
 					window.requestAnimationFrame(draw);
 					howmanypeople = document.getElementById('howmanypeople');
 					hmpContext = howmanypeople.getContext('2d');
