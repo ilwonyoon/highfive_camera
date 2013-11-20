@@ -28,9 +28,12 @@
 	    	<br>
     	<div class="row">
 	    	<!-- Add images -->
-	    	<div id="gallery" class="gallery" ></div>
+	    	<div id="gallery" class="gallery col-md-offset-3 col-md-6"  ></div>
 	    </div>	
-
+	    <br>
+	    <br>
+	    <br>
+	    <br>
 
 <div class="row">
 	<div class="col-md-offset-3 col-md-6" id="gallery">
@@ -43,11 +46,11 @@
     	{{/photos}}
 
     	 <div class="col-md-3">
-    	<h3>Upload a new photo</h3>
+    	<p>Do you want to submit a picture?</p>
     	
 		<form method="POST" action="/newphoto" enctype="multipart/form-data">
-			<textarea name="image_data" id="image_data"></textarea>
-			<input type="submit" class="btn" value="Save" id="upload">
+			<textarea name="image_data" id="image_data" style="display:none"></textarea>
+			<input type="submit" class="btn" value="submit" id="upload">
 		</form>
 	</div>
 
