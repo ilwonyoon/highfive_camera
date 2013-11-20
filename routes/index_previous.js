@@ -28,7 +28,7 @@ exports.index =  function(req,res){
 
       console.log(photos);
       templateData = {
-        title : 'hifivepicture',
+        title : 'Image Upload to S3 Demo',
         photos : photos
       };
 
@@ -108,47 +108,67 @@ exports.delete_photo = function(req, res) {
 
 exports.new_photo = function(req, res){
   
-  var filename = 'my_data_pic.png';
-  var photoData = req.body.photoData;
-   
-  // convert to buffer
-  var photo_buffer = new Buffer(b64str, 'base64');
-   
-  // prepare database record
+  
+  // Get File upload information  
+  var filename = req.files.image.filename; // actual filename of file
+  var path = req.files.image.path; //will be put into a temp directory
+  var mimeType = req.files.image.type; // image/jpeg or actual mime type
+  console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+  console.log("filename : "+ filename);
+  console.log("paht : " +  path);
+  console.log("mimeType : " + mimeType);
+
+
+  // Create a new blog post
   var photoPost = new Photo(); // create Blog object
-   
-  // pick the Amazon S3 Bucket
-  var s3bucket = new AWS.S3({params: {Bucket: 'hifivepicture'}});
-   
-  // Set the bucket object properties
-  // Key == filename
-  // Body == contents of file
-  // ACL == Should it be public? Private?
-  // ContentType == MimeType of file ie. image/jpeg.
-  var params = {
-    Key: filename,
-    Body: photo_buffer,
-    ACL: 'public-read',
-    ContentType: mimeType
-  };
-   
-  // Put the Object in the Bucket
-  s3bucket.putObject(params, function(err, data) {
-    if (err) {
-      console.log(err)
-   
-    } else {
-      console.log("Successfully uploaded data to s3 bucket");
-   
-      // add image to blog post
-      photoPost.image = filename;
-    }
-   
-    photoPost.save();
-   
-    res.redirect('/');
-   
+  photoPost.title = req.body.title;
+  photoPost.urltitle = req.body.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'_')
+  photoPost.caption = req.body.caption;
+  
+  // any file upload?
+  console.log("about to upload")
+
+  // 2) create file name with logged in user id + cleaned up existing file name. function defined below.
+  cleanedFileName = cleanFileName(filename);
+
+  // 3a) We first need to open and read the image upload into a buffer
+  fs.readFile(path, function(err, file_buffer){
+
+    // pick the Amazon S3 Bucket
+    var s3bucket = new AWS.S3({params: {Bucket: 'hifivepicture'}});
+    
+    // Set the bucket object properties
+    // Key == filename
+    // Body == contents of file
+    // ACL == Should it be public? Private?
+    // ContentType == MimeType of file ie. image/jpeg.
+    var params = {
+      Key: cleanedFileName,
+      Body: file_buffer,
+      ACL: 'public-read',
+      ContentType: mimeType
+    };
+    
+    // Put the Object in the Bucket
+    s3bucket.putObject(params, function(err, data) {
+      if (err) {
+        console.log(err)
+
+      } else {
+        console.log("Successfully uploaded data to s3 bucket");
+
+        // add image to blog post
+        photoPost.image = cleanedFileName;
+      }
+
+      photoPost.save();
+
+      res.redirect('/');
+
+    });
+
   });
+
 };
 
 var cleanFileName = function(filename) {

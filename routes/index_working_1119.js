@@ -15,7 +15,7 @@ var s3 = new AWS.S3();
 exports.index =  function(req,res){
 
   // query for all images
-  //console.log(req);
+  console.log(req);
   var photoQuery = Photo.find({});
   photoQuery.sort('-created');
   photoQuery.exec(function(err, photos){
@@ -106,17 +106,12 @@ exports.delete_photo = function(req, res) {
 
 };
 
-
 exports.new_photo = function(req, res){
   
-  var name = 'my_data_pic_';
-  var file_ext = ".png";
+  var filename = 'my_data_pic.png';
   var photoData = req.body.image_data;
-  var d = new Date();
-  var timestamp = d.getTime();
-
-  var filename = name +timestamp.toString()+file_ext;
-  
+  console.log(photoData);
+  console.log("####################")
   // var b64str = req.files;
   photoData = photoData.replace("data:image/webp;base64,","");
   // convert to buffer

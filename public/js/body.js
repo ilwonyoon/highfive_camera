@@ -7,7 +7,8 @@
 			var video;
 			var frequencies = null;
 			var analyser = null;
-
+			var howmanypeople = null;
+			var hmpContext = null; ;
 
 			
 			var initWebRTC = function() {
@@ -32,6 +33,8 @@
 					thecontext = thecanvas.getContext('2d');
 					thecontext.drawImage(video,0,0,video.width,video.height);
 					window.requestAnimationFrame(draw);
+					howmanypeople = document.getElementById('howmanypeople');
+					hmpContext = howmanypeople.getContext('2d');
 					
 				};
 				draw();
@@ -70,7 +73,8 @@
 				analyser.getByteFrequencyData(frequencies);
 				// thecontext_audio.fillStyle = "#00ff00";
 				thecontext_audio.clearRect(0,0,audiograph.width, audiograph.height);
-				
+				thecontext_audio.fillStyle="rgb(24,24,24)";
+				thecontext_audio.fillRect(0,0,audiograph.width,audiograph.height);
 				//Indentify clamps with frequencies of Input
 				var threshold = null;
 
@@ -102,6 +106,7 @@
 			var startTime;
 			var endTime;
 			var numberOfPicture =0;
+			
 
 			var takePicture = function(){
 				if(isPictureTaken === false){
@@ -110,19 +115,23 @@
 					isPictureTaken = true;
 
 					var dataUrl = thecanvas.toDataURL('image/webp', 1);
+					$("#image_data").val(dataUrl);
+					$("#upload").click(function(){
+						$("upload").submit();
+						console.log("submit a picture");
+					})
 
 					var picture = document.createElement('img');
 					picture.style.width ="120px";
-					
-
 					picture.src = dataUrl;
 
 					document.getElementById('gallery').appendChild(picture);
-					// console.log("add image element to document");
-					// console.log("Picture taken");
+	
 					numberOfPicture+=1;
 					document.getElementById('numberOfPicture').innerHTML =numberOfPicture;
 					getScore();
+					howManyPeople();
+					
 
 					//document.getElementById("thecanvas").style.display="none";
 			}
@@ -151,6 +160,16 @@
 				document.getElementById('display_score').innerHTML= score;
 				
 			}
+			var howManyPeople = function(){
+
+				hmpContext.fillStyle= "green";
+				hmpContext.fillRect(0,30,numberOfPicture*5,200);
+			}
+
+
+			
+			
+
 
 
 			var videoOff = function(){
