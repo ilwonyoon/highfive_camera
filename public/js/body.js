@@ -91,12 +91,12 @@
 					thecontext_audio.fillRect(i*10,audiograph.height-frequencies[i]/4, 7, audiograph.height);	
 
 
-					if(frequencies[i] >50) {
+					if(frequencies[i] >100) {
 						threshold ++;
 					}
 					
 				}
-				if(threshold > 27){
+				if(threshold > 30){
 						takePicture();
 					}
 				
@@ -140,7 +140,7 @@
 					endTime = new Date().getTime();
 					//if 3 seconds is passed, enable retake picture
 					if(Math.abs(startTime-endTime || isPictureTaken ===true) > 1000) {
-						console.log(startTime-endTime);
+						//console.log(startTime-endTime);
 						isPictureTaken = false;
 
 
@@ -157,7 +157,7 @@
 					total += frequencies[i];
 				}
 				score = Math.floor(total/frequencies.length);
-				console.log("get score :" + score);
+				//console.log("get score :" + score);
 				document.getElementById('display_score').innerHTML= score;
 				
 			}
