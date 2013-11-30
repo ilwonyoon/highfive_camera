@@ -58,7 +58,7 @@
 				analyser = (analyser || audioContext.createAnalyser());
 				audioSource.connect(analyser);
 				// frequencies = new Uint8Array(analyser.frequencyBinCount/128);
-				frequencies = new Uint8Array(analyser.frequencyBinCount/32);
+				frequencies = new Uint8Array(analyser.frequencyBinCount/16);
 				console.log(frequencies.length);
 				analyser.getByteFrequencyData(frequencies);
 
@@ -88,7 +88,7 @@
 					// thecontext_audio.stroke();
 
 					thecontext_audio.fillStyle = "rgb(200,124,255);"
-					thecontext_audio.fillRect(i*10,audiograph.height-frequencies[i]/4, 7, audiograph.height);	
+					thecontext_audio.fillRect(i*10,audiograph.height-frequencies[i]/4, 8 , audiograph.height);	
 
 
 					if(frequencies[i] >100) {
@@ -96,7 +96,7 @@
 					}
 					
 				}
-				if(threshold > 30){
+				if(threshold > 60){
 						takePicture();
 					}
 				
@@ -167,12 +167,6 @@
 				hmpContext.fillRect(0,30,numberOfPicture*5,200);
 			}
 
-
-			
-			
-
-
-
 			var videoOff = function(){
 				document.getElementById("audiograph").style.display="none";
 				console.log('video off');
@@ -184,6 +178,5 @@
 				document.getElementById("thecanvas").style.display="";
 				isPictureTaken = false;
 			}
-	
 			
 			window.addEventListener('load', initWebRTC, false);

@@ -2,27 +2,29 @@
 
 		<div class="row" width="1024" height="768">
 	    	<!-- Video Container -->
-			<div id="video_container" class="col-md-offset-4 col-md-6"> 
+			<div id="video_container" class="col-md-offset-3 col-md-8"> 
 				<h1>Your Score is : <span id="display_score">score goes here</span></h1>
 				<h1># <span id="numberOfPicture"></span></h1>
 				<canvas id="howmanypeople"></canvas>
-				<video id="thevideo" width="320" height="240" autoplay style="display:none" muted="true"></video>
-				<canvas id="thecanvas" width="320" height="240"></canvas>
+				<video id="thevideo" width="640" height="480" autoplay style="display:none" muted="true"></video>
+				<canvas id="thecanvas" width="640" height="480"></canvas>
 			</div>
 		</div>
 			<br>
 			<br>
 		<div class="row">
 			<!-- Audio graph container -->
-			<div id="audio_container"  class="col-md-offset-4 col-md-6">
+			<div id="audio_container"  class="col-md-offset-3 col-md-8">
 				<input type = "button" value ="Audio Graph On" onclick ="videoOn();">
 				<input id ="turnoff" type = "button" value ="Audio Graph Off" onclick ="videoOff();">
 			
 				<input type = "button" value ="Retake" onclick ="retake();">
 				<button id="ajax">Get External Content</button>
+				<!-- test -->
+				<button id="smsButton">send a SMS</button>
 				<br>
 				<br>
-				<canvas id="audiograph" width="320" height="100" ></canvas >
+				<canvas id="audiograph" width="640" height="100" ></canvas >
 			</div>
 		</div>
 	    	<br>

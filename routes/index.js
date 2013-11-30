@@ -36,10 +36,16 @@ exports.index =  function(req,res){
 
     }
   })
-
-  
-  
 };
+
+exports.test = function(req, res) {
+
+    var templateData = {
+
+    }
+
+    res.render('joke.html', templateData);
+}
 
 
 //display individual photo

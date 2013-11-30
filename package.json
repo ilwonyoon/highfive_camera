@@ -1,5 +1,5 @@
 {
-  "name": "dwd-nodejs-s3-demo",
+  "name": "hifivecamera",
   "version": "0.0.1",
   
   "dependencies": {
@@ -7,7 +7,9 @@
     "hogan-express" : "0.3.3",
     "mongoose" : "3.5.4",
     "moment" : "1.7.2",
-    "aws-sdk" : "v0.9.8-pre.9"
+    "aws-sdk" : "v0.9.8-pre.9",
+    "commander" : "0.x.x",
+    "heroku-twilio" : "0.0.x"
   },
 
   "engines" : {
