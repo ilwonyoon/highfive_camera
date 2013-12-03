@@ -59,6 +59,12 @@ var routes = require('./routes/index.js');
 app.get('/', routes.index);
 app.post('/newphoto', routes.new_photo);
 
+//--------------- Create a photobooth page ----------------
+// app.get('/photobooth', routes.photobooth);
+// app.post('/photoboothUpload', routes.photoboothUpload);
+// app.get('/photobooth/delete/:photobooth_id',routes.delete_photoboothPicture);
+// app.get('/photobooth/:photobooth_id', routes.display_photobooth);
+
 app.get('/test', routes.test);
 
 /* Endpoint to send an sms using the Twilio Rest Client */
@@ -66,18 +72,18 @@ app.get('/test', routes.test);
 // var firYear = {};
 // var secYear = {};
 
-// app.get("/sendSms", function(req, res){
+app.get("/sendSms", function(req, res){
 
-//   var number = "+19177255750"; // Set this equal to the number you want to text
+  var number = "+19177255750"; // Set this equal to the number you want to text
 
-//   if(!number){
-//     res.send('You need to set a phone number to call in app.js');
-//   }else{
-//     phone.sendSms(number, 'Hello, this is your new twilio phone number texting you!', null, function(sms){
-//       res.send('Sending sms to ' + number);
-//     });
-//   }
-// });
+  if(!number){
+    res.send('You need to set a phone number to call in app.js');
+  }else{
+    phone.sendSms(number, 'Hello, this is your new twilio phone number texting you!', null, function(sms){
+      res.send('Sending sms to ' + number);
+    });
+  }
+});
 
 app.get('/photo/delete/:photo_id', routes.delete_photo);
 app.get('/photo/:photo_id', routes.display_photo);

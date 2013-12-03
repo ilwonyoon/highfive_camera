@@ -6,6 +6,7 @@ var Photo = require('../models/photo.js');
 
 var fs = require('fs');
 var AWS = require('aws-sdk');
+
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY,
   secretAccessKey: process.env.AWS_SECRET_KEY
