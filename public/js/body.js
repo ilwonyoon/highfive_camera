@@ -51,26 +51,26 @@
 
 			var createGif = function(){
 
-				// var gif = new GIF({
-				// 	worker:2,
-				// 	quality:5,
-				// 	width :320,
-				// 	height:240
-				// });
+				var gif = new GIF({
+					worker:2,
+					quality:5,
+					width :320,
+					height:240
+				});
 
 			
-				// for (var i = 0; i < 3; i++) {
-			 //        $('#img-' + i).each(function() {
-			 //          gif.addFrame($(this).context);
-			 //          console.log("add frame");
-			 //        });
-			 //      }
-				// gif.on('finished',function(blob){
+				for (var i = 0; i < 3; i++) {
+			        $('#img-' + i).each(function() {
+			          gif.addFrame($(this).context);
+			          console.log("add frame");
+			        });
+			      }
+				gif.on('finished',function(blob){
 					
-				// 	window.open(URL.createObjectURL(blob));
+					window.open(URL.createObjectURL(blob));
 
-				// });
-				// gif.render();
+				});
+				gif.render();
 				console.log('gif created');
 
 
