@@ -48,17 +48,14 @@
 			// ------------------------------
 			// createGif
 			
-
-			var createGif = function(){
-
-				var gif = new GIF({
+			var gif = new GIF({
 					worker:2,
 					quality:5,
 					width :320,
 					height:240
 				});
+			var createGif = function(){
 
-			
 				for (var i = 0; i < 3; i++) {
 			        $('#img-' + i).each(function() {
 			          gif.addFrame($(this).context);
@@ -103,6 +100,7 @@
 				    	picture.id  = "img-" + imgCount;
 					    picture.style.width ="120px";
 					    picture.src = imgArray[imgCount];
+					    picture.style.display ="none";
 					    document.getElementById('gallery').appendChild(picture);
 				    }
 					
@@ -180,7 +178,7 @@
 					var dataUrl = thecanvas.toDataURL('image/webp', 1);
 					$("#image_data").val(dataUrl);
 					$("#upload").click(function(){
-						$("upload").submit();
+						$("#upload").submit();
 						console.log("submit a picture");
 					})
 
