@@ -2,7 +2,6 @@
 /**
  * Module dependencies.
  */
-
 var express = require('express')
   , http = require('http')
   , path = require('path')
@@ -52,19 +51,8 @@ var TwilioClient = require('heroku-twilio').Client,
 /* Get the caller_id and create a phone number object with it */
 var phone = client.getPhoneNumber(config.caller_id);
 
-/* Function that is called when caller_id receives an incoming sms */
-var onSms = function(reqParams, res){
-  res.append(new Twiml.Sms("Hello, thanks for texting your new Twilio phone number"));
-  res.send();
-}
-
-/* Setup function uses to setup endpoints for our caller_id */
-phone.setup(function() {
-  phone.on('incomingSms', function(reqParams, response){
-    return onSms(reqParams, response);
-  });
-});
 //------------------SETUP FOR TWILIO END------------------
+
 
 // public routes
 var routes = require('./routes/index.js');
@@ -74,8 +62,14 @@ app.post('/newphoto', routes.new_photo);
 app.get('/test', routes.test);
 
 /* Endpoint to send an sms using the Twilio Rest Client */
+
+// var firYear = {};
+// var secYear = {};
+
 app.get("/sendSms", function(req, res){
+
   var number = "+19177255750"; // Set this equal to the number you want to text
+
   if(!number){
     res.send('You need to set a phone number to call in app.js');
   }else{

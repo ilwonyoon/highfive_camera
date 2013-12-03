@@ -1,6 +1,4 @@
-
-
-		<div class="row" width="1024" height="768">
+		<div class="row">
 	    	<!-- Video Container -->
 			<div id="video_container" class="col-md-offset-3 col-md-8"> 
 				<h1>Your Score is : <span id="display_score">score goes here</span></h1>
@@ -10,8 +8,13 @@
 				<canvas id="thecanvas" width="640" height="480"></canvas>
 			</div>
 		</div>
+		<div>
+			<canvas id="giftest"></canvas>
+
+		</div>
 			<br>
-			<br>
+			<br> 	
+
 		<div class="row">
 			<!-- Audio graph container -->
 			<div id="audio_container"  class="col-md-offset-3 col-md-8">
@@ -22,13 +25,16 @@
 				<button id="ajax">Get External Content</button>
 				<!-- test -->
 				<button id="smsButton">send a SMS</button>
+				<button id="createGif" onclick="createGif();">Gif</button>
 				<br>
 				<br>
-				<canvas id="audiograph" width="640" height="100" ></canvas >
+				<canvas id="audiograph" width="640" height="100" style="display:none"></canvas >
 			</div>
 		</div>
+
 	    	<br>
 	    	<br>
+
     	<div class="row">
 	    	<!-- Add images -->
 	    	<div id="gallery" class="gallery col-md-offset-3 col-md-6"  ></div>
@@ -38,7 +44,7 @@
 	    <br>
 	    <br>
 
-<div class="row">
+	<div class="row">
 	<div class="col-md-offset-3 col-md-6" id="gallery">
 		{{#photos}}
     	

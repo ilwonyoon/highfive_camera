@@ -9,7 +9,6 @@
 			var analyser = null;
 			var howmanypeople = null;
 			var hmpContext = null; ;
-
 			
 			var initWebRTC = function() {
 			
@@ -26,19 +25,87 @@
 				}
 
 				
-
 				var draw = function() {
 
 					thecanvas = document.getElementById('thecanvas');
 					thecontext = thecanvas.getContext('2d');
+
 					thecontext.scale(-1,1);
 					thecontext.drawImage(video,video.width * -1,0,video.width,video.height);
-					window.requestAnimationFrame(draw);
+					
 					howmanypeople = document.getElementById('howmanypeople');
 					hmpContext = howmanypeople.getContext('2d');
 					
+					window.requestAnimationFrame(draw);
+					
 				};
+				setInterval(allCapturedImage,500);
 				draw();
+				
+				
+			};
+
+			// ------------------------------
+			// createGif
+			
+
+			var createGif = function(){
+
+				var gif = new GIF({
+					worker:2,
+					quality:5,
+					width :320,
+					height:240
+				});
+
+			
+				for (var i = 0; i < 3; i++) {
+			        $('#img-' + i).each(function() {
+			          gif.addFrame($(this).context);
+			          console.log("add frame");
+			        });
+			      }
+				gif.on('finished',function(blob){
+					
+					window.open(URL.createObjectURL(blob));
+
+				});
+				gif.render();
+				console.log('gif created');
+
+
+			}
+				
+
+
+			// ------------------------------
+
+			var imgArray =new Array();
+			var imgLen = 15;
+			var imgCount = 0; 
+			var picture = null;
+
+			var allCapturedImage = function(){
+
+					if(imgCount !== null && imgCount < imgLen){
+						imgCount += 1;
+						if(imgCount >= imgLen){
+							
+							imgCount = 0;
+						}
+					}
+						
+					imgArray[imgCount] = thecanvas.toDataURL('image/webp', 1);
+					
+				    if(video.src !== ""){
+
+				    	picture = document.createElement('img');
+				    	picture.id  = "img-" + imgCount;
+					    picture.style.width ="120px";
+					    picture.src = imgArray[imgCount];
+					    document.getElementById('gallery').appendChild(picture);
+				    }
+					
 			};
 
 			var webRTCInit = function(stream){
@@ -82,11 +149,6 @@
 				for (var i = 0; i < frequencies.length; i++)
 				{	
 
-					// thecontext_audio.moveTo(0,i*10);
-					// thecontext_audio.lineTo(audiograph.width,i*10);
-					// thecontext_audio.lineWidth=0.1;
-					// thecontext_audio.stroke();
-
 					thecontext_audio.fillStyle = "rgb(200,124,255);"
 					thecontext_audio.fillRect(i*10,audiograph.height-frequencies[i]/4, 8 , audiograph.height);	
 
@@ -96,7 +158,7 @@
 					}
 					
 				}
-				if(threshold > 60){
+				if(threshold > 50){
 						takePicture();
 					}
 				
@@ -122,11 +184,11 @@
 						console.log("submit a picture");
 					})
 
-					var picture = document.createElement('img');
-					picture.style.width ="120px";
-					picture.src = dataUrl;
+					// var picture = document.createElement('img');
+					// picture.style.width ="120px";
+					// picture.src = dataUrl;
 
-					document.getElementById('gallery').appendChild(picture);
+					//document.getElementById('gallery').appendChild(picture);
 	
 					numberOfPicture+=1;
 					document.getElementById('numberOfPicture').innerHTML =numberOfPicture;
@@ -178,5 +240,6 @@
 				document.getElementById("thecanvas").style.display="";
 				isPictureTaken = false;
 			}
+	
 			
 			window.addEventListener('load', initWebRTC, false);
