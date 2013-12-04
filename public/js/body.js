@@ -39,7 +39,7 @@
 					window.requestAnimationFrame(draw);
 					
 				};
-				setInterval(allCapturedImage,500);
+				setInterval(allCapturedImage,200);
 				draw();
 				
 				
@@ -48,17 +48,19 @@
 			// ------------------------------
 			// createGif
 			
-			var gif = new GIF({
-					worker:2,
-					quality:5,
-					width :320,
-					height:240
-				});
+			
 			var createGif = function(){
-
-				for (var i = 0; i < 3; i++) {
+				var gif = new GIF({
+					repeat : 0,
+					worker:2,
+					quality:30,
+					width :640,
+					height:480
+				});
+				for (var i = 0; i < 8; i++) {
 			        $('#img-' + i).each(function() {
-			          gif.addFrame($(this).context);
+			          console.log($(this).context);
+			          gif.addFrame($(this).context,{delay :150});
 			          console.log("add frame");
 			        });
 			      }
@@ -78,7 +80,7 @@
 			// ------------------------------
 
 			var imgArray =new Array();
-			var imgLen = 15;
+			var imgLen = 8;
 			var imgCount = 0; 
 			var picture = null;
 
@@ -96,11 +98,11 @@
 					
 				    if(video.src !== ""){
 
-				    	picture = document.createElement('img');
-				    	picture.id  = "img-" + imgCount;
+				    	picture = document.getElementById('img-'+imgCount+'');
+				    	//picture.id  = "img-" + imgCount;
 					    picture.style.width ="120px";
 					    picture.src = imgArray[imgCount];
-					    picture.style.display ="none";
+					    //picture.style.display ="none";
 					    document.getElementById('gallery').appendChild(picture);
 				    }
 					
@@ -151,12 +153,12 @@
 					thecontext_audio.fillRect(i*10,audiograph.height-frequencies[i]/4, 8 , audiograph.height);	
 
 
-					if(frequencies[i] >100) {
+					if(frequencies[i] >120) {
 						threshold ++;
 					}
 					
 				}
-				if(threshold > 50){
+				if(threshold > 60){
 						takePicture();
 					}
 				
@@ -180,16 +182,11 @@
 					$("#upload").click(function(){
 						$("#upload").submit();
 						console.log("submit a picture");
-					})
-
-					// var picture = document.createElement('img');
-					// picture.style.width ="120px";
-					// picture.src = dataUrl;
-
-					//document.getElementById('gallery').appendChild(picture);
+					});
 	
 					numberOfPicture+=1;
 					document.getElementById('numberOfPicture').innerHTML =numberOfPicture;
+					createGif();
 					getScore();
 					howManyPeople();
 					
