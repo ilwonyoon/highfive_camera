@@ -57,23 +57,30 @@ var phone = client.getPhoneNumber(config.caller_id);
 // public routes
 var routes = require('./routes/index.js');
 app.get('/', routes.index);
+app.get('/photobooth',routes.photobooth);
 app.post('/newphoto', routes.new_photo);
 
-//--------------- Create a photobooth page ----------------
-// app.get('/photobooth', routes.photobooth);
-// app.post('/photoboothUpload', routes.photoboothUpload);
-// app.get('/photobooth/delete/:photobooth_id',routes.delete_photoboothPicture);
-// app.get('/photobooth/:photobooth_id', routes.display_photobooth);
-
 app.get('/test', routes.test);
+app.get('/request',function(req,res){
+  console.log(req);
+  res.send("hello world");
+});
 
-/* Endpoint to send an sms using the Twilio Rest Client */
 
-// var firYear = {};
-// var secYear = {};
+// app.get('/paramemter/:role/:name/:status',function(req,res){
+//   console.log(req.params.role);
+//   //console.log(req.route);
+//   res.end();
+// });
 
-app.get("/sendSms", function(req, res){
 
+app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
+
+  var requestNum = req.params.phoneNumber.toString();
+  var validNumber = requestNum.replace("-","");
+  validNumber = "+1" + validNumber;
+  console.log(validNumber);
+  
   var number = "+19177255750"; // Set this equal to the number you want to text
 
   if(!number){

@@ -4,7 +4,9 @@
 			var audiograph =null;
 			var thecontext_audio = null;
 
+
 			var video;
+			
 			var frequencies = null;
 			var analyser = null;
 			var howmanypeople = null;
@@ -18,7 +20,7 @@
 				
 				// The video element on the page to display the webcam
 				 video = document.getElementById('thevideo');
-
+				 
 				// if we have the method
 				if (navigator.getUserMedia) {
 					navigator.getUserMedia({video: true, audio:true},webRTCInit, function(error) {alert("Failure " + error.code);});
@@ -37,6 +39,7 @@
 					hmpContext = howmanypeople.getContext('2d');
 					
 					window.requestAnimationFrame(draw);
+
 					
 				};
 				setInterval(allCapturedImage,200);
@@ -48,34 +51,45 @@
 			// ------------------------------
 			// createGif
 			
+			var giftest = null;
 			
+	
 			var createGif = function(){
+				var base64;
 				var gif = new GIF({
 					repeat : 0,
 					worker:2,
 					quality:30,
-					width :640,
-					height:480
+					width :320,
+					height:240
 				});
 				for (var i = 0; i < 8; i++) {
 			        $('#img-' + i).each(function() {
-			          console.log($(this).context);
+			          //console.log($(this).context);
 			          gif.addFrame($(this).context,{delay :150});
 			          console.log("add frame");
 			        });
 			      }
 				gif.on('finished',function(blob){
-					
-					window.open(URL.createObjectURL(blob));
+					giftest = document.getElementById("giftest");
+					giftest.src = URL.createObjectURL(blob);
+					//convert blob object to base64 in order to upload to
+					var reader = new FileReader();
+					reader.readAsDataURL(blob);
+										reader.onloadend = function(){
+						base64= reader.result;
+						console.log(base64);
+						$("#image_data").val(base64);
 
+					}
+					
+					
 				});
 				gif.render();
 				console.log('gif created');
 
 
 			}
-				
-
 
 			// ------------------------------
 
@@ -153,7 +167,7 @@
 					thecontext_audio.fillRect(i*10,audiograph.height-frequencies[i]/4, 8 , audiograph.height);	
 
 
-					if(frequencies[i] >120) {
+					if(frequencies[i] >140) {
 						threshold ++;
 					}
 					
@@ -178,7 +192,9 @@
 					isPictureTaken = true;
 
 					var dataUrl = thecanvas.toDataURL('image/webp', 1);
-					$("#image_data").val(dataUrl);
+					//console.log("dataUrl type : " + typeof(dataUrl));
+
+					//$("#image_data").val(dataUrl);
 					$("#upload").click(function(){
 						$("#upload").submit();
 						console.log("submit a picture");

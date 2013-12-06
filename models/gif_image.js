@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var photoSchema = new Schema({
-	index  : Number, 
-    firstName     : String,
+var gifSchema = new Schema({
+	index :Number,
+	firstName     : String,
     last_name   : String,
     phoneNumber : Number,
     urltitle  : String,
@@ -12,4 +12,4 @@ var photoSchema = new Schema({
 });
 
 // export Page model
-module.exports = mongoose.model('Photo', photoSchema);
+module.exports = mongoose.model('Gif',gifSchema);

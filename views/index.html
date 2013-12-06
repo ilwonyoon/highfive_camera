@@ -1,3 +1,10 @@
+		{{#yield-scripts}}
+				<script src="/js/gif.js"></script>
+		        <script src="/js/gif.worker.js"></script>
+		        <script src="/js/body.js"></script>
+		        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		{{/yield-scripts}}
+
 		<div class="row">
 	    	<!-- Video Container -->
 			<div id="video_container" class="col-md-offset-3 col-md-8"> 
@@ -8,8 +15,9 @@
 				<canvas id="thecanvas" width="640" height="480"></canvas>
 			</div>
 		</div>
+
 		<div>
-			<canvas id="giftest"></canvas>
+			<img id ="giftest" src="">
 
 		</div>
 			<br>
@@ -26,6 +34,8 @@
 				<!-- test -->
 				<button id="smsButton">send a SMS</button>
 				<button id="createGif" onclick="createGif();">Gif</button>
+				<button onclick="addText();">addText</button>
+
 				<br>
 				<br>
 				<canvas id="audiograph" width="640" height="100" style="display:none"></canvas >
@@ -67,18 +77,36 @@
 		{{#photos}}
     	
     	<a href="/photo/{{_id}}" class="gallery">
-    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="150" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{caption}}" title="{{title}}">
+    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="150" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}">
+    	<p>
+          First Name : {{firstName}}<br> Last Name : {{last_name}}<br> Phono Number : {{phoneNumber}}
+    	</p>
     	</a>
 	
     	{{/photos}}
+
+    	{{#otherphoto}}
+    	
+    	<a href="/photo/{{_id}}" class="gallery">
+    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="150" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}">
+    	<p>
+          First Name : {{firstName}}<br> Last Name : {{last_name}}<br> Phono Number : {{phoneNumber}}
+    	</p>
+    	</a>
+	
+    	{{/otherphoto}}
+
+
 
     	 <div class="col-md-3">
     	<p>Do you want to submit a picture?</p>
     	
 		<form method="POST" action="/newphoto" enctype="multipart/form-data">
-			<textarea name="image_data" id="image_data" style="display:none"></textarea>
-			what's your name? <input type="text" name="name" value=""><br>
-			phone number ? <input type="text" name="phonenumber">
+			<textarea name="image_data" id="image_data"></textarea>
+			First Name :  <input type="text" name="firstName" value=""><br>
+			Last Name :  <input type="text" name="lastName" value=""><br>
+			Phone number : <input type="text" name="phoneNumber"><br>
+			
 			<input type="submit" class="btn" value="submit" id="upload">
 		</form>
 	</div>
