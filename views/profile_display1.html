@@ -1,0 +1,25 @@
+<div id="profile_holder1" class="col-md-6">
+		{{#photos}}
+    	
+	    	<a href="/photo/{{_id}}" class="gallery">
+	    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="320" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}">
+	    	<p>
+			   Index :{{index}} <br>
+	           First Name : {{firstName}}<br> Last Name : {{last_name}}<br> 
+	    	</p>
+	    	<p id="phoneNumber1">
+	    		{{phoneNumber}}
+	    	</p>
+	    	</a>
+
+	    	<script type="text/javascript">
+	    		$(document).ready(function(){
+	    			$("#phoneNumber1").load("/sendSms/{{firstName}}/{{phoneNumber}}");
+	    			console.log("send sms message to number: "+ {{phoneNumber}} );
+
+	    		});
+			</script>
+		
+    	{{/photos}}
+
+</div> <!-- profile Holder -->

@@ -57,6 +57,9 @@ var phone = client.getPhoneNumber(config.caller_id);
 // public routes
 var routes = require('./routes/index.js');
 app.get('/', routes.index);
+app.get('/profile_display1', routes.profile_display1);
+app.get('/profile_display2', routes.profile_display2);
+
 app.post('/newgif', routes.new_gif);
 app.get('/allgif', routes.allgif);
 app.get('/allgif/:gif_id', routes.each_gif);

@@ -44,7 +44,7 @@
 				};
 				setInterval(allCapturedImage,200);
 				setInterval(timer,10);
-				if(!windowRefresh){refresh();}
+				//if(!windowRefresh){refresh();}
 				draw();
 				
 				

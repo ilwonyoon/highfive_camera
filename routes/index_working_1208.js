@@ -43,66 +43,58 @@ var updateIndex = function(){
 
 // main page
 exports.index =  function(req,res){
-  res.render("index.html");
-};
-var rIndex;
-exports.profile_display1  = function(req,res){
+  //updateIndex();
   //Check how many pictures in Data Base
   Photo.count({}, function( err, count){
     total = count;
     console.log("Total number of pictures : " + total );
   });
-  if(total >=2 ){
-    rIndex = Math.floor(Math.random()*total);
-    console.log("rIndex : " + rIndex);
-    var photoQuery = Photo.find({index : rIndex});
-    photoQuery.exec(function(err,photos){
-      if(err){
-        console.error(err);
-      }else{
-        profile1_id = photos[0].id;
-        res.locals({photos : photos});
-        res.render("profile_display1.html");
-      }
-    });
-  }
-  else{
-    res.send("We are waiting for Users");
-  }
-}
 
-exports.profile_display2  = function(req,res){
-  //Check how many pictures in Data Base
-  Photo.count({}, function( err, count){
-    total = count;
-    console.log("Total number of pictures : " + total );
-  });
-  if(total >=2 ){
+ if(total >=2){
+    //pick random index from entire image pool
+    var rIndex = Math.floor(Math.random()*total);
     var rIndex2 = Math.floor(Math.random()*total);
-    
+    console.log("rIndex : " + rIndex);
+    console.log("rIndex2 : " + rIndex2);
+
     while(rIndex == rIndex2){
       console.log("you need to reset random");
       rIndex2 = Math.floor(Math.random()*total);
-      console.log(" Reset rIndex2 : " +  rIndex2);
+      console.log("rIndex2 : " +  rIndex2);
       
     }
-    console.log("rIndex2 : " + rIndex2);
+
+    var photoQuery = Photo.find({index : rIndex});
     var photoQuery2 = Photo.find({index : rIndex2});
-    photoQuery2.exec(function(err,photos){
-      if(err){
+
+    //photoQuery.sort('-created');
+    photoQuery.exec(function(err, photos){
+      if (err) {
         console.error(err);
-      }else{
-        console.log(photos);
-        profile2_id = photos[0].id;
-        res.locals({otherphoto : photos});
-        res.render("profile_display2.html");
+        res.send("error on querying images");
+      } else {
+       profile1_id = photos[0]._id;
+       res.locals({photos: photos});
+       console.log("photo object is  : " +  photos);
+       photoQuery2.exec(function(err,photos){
+        if(err){
+          console.error(err);
+        }else{
+          profile2_id = photos[0]._id;
+          console.log("otherphoto object : " + photos);
+          res.locals({otherphoto: photos});
+          res.render("index.html");
+        }
+       })
+
       }
     });
+  //if there are less than 2 pics in DB  
+  }else{
+    res.render("index.html");
   }
-  else{
-    res.send("We are waiting for Users");
-  }
-}
+};
+
 
 //Upload new gif to MongoDB and s3
 exports.new_gif = function(req, res){
