@@ -57,44 +57,50 @@ var phone = client.getPhoneNumber(config.caller_id);
 // public routes
 var routes = require('./routes/index.js');
 app.get('/', routes.index);
+app.post('/newgif', routes.new_gif);
+app.get('/allgif', routes.allgif);
+app.get('/allgif/:gif_id', routes.each_gif);
+app.get('/allgif/delete/:gif_id', routes.delete_gif);
+
 app.get('/photobooth',routes.photobooth);
-app.post('/newphoto', routes.new_photo);
+app.post('/photobooth_upload', routes.photobooth_upload);
+app.get('/deleteProfileFromServer', routes.delete_photo_afterTimer);
+
+//update index from 0 ~ DB.length
+app.get('/update_index', routes.update_index);
+app.get('/update_index_after_photo_upload', routes.update_index_after_photo_upload);
 
 app.get('/test', routes.test);
-app.get('/request',function(req,res){
-  console.log(req);
-  res.send("hello world");
-});
-
-
-// app.get('/paramemter/:role/:name/:status',function(req,res){
-//   console.log(req.params.role);
-//   //console.log(req.route);
-//   res.end();
-// });
-
 
 app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
 
-  var requestNum = req.params.phoneNumber.toString();
-  var validNumber = requestNum.replace("-","");
-  validNumber = "+1" + validNumber;
-  console.log(validNumber);
+  var valid = "+1";
+  var number = req.params.phoneNumber;
+  var profile_name = req.params.firstName;
   
-  var number = "+19177255750"; // Set this equal to the number you want to text
-
+  number = number.toString();
+  number = number.replace("-","");
+  if(number.charAt(0) != "+" ){
+    number = valid.concat(number);
+  }
+  console.log("number is  : " +  number);
   if(!number){
     res.send('You need to set a phone number to call in app.js');
   }else{
-    phone.sendSms(number, 'Hello, this is your new twilio phone number texting you!', null, function(sms){
-      res.send('Sending sms to ' + number);
-    });
+    // phone.sendSms(number, 'Hello, this is your new twilio phone number texting you!', null, function(sms){
+    //   res.send('Sending sms to ' + number);
+    // });
+    res.send('Sent SMS to ' + profile_name);
+    console.log('Sending sms to Number :' + number + "," + profile_name);
   }
 });
 
 app.get('/photo/delete/:photo_id', routes.delete_photo);
 app.get('/photo/:photo_id', routes.display_photo);
 
+
+//Delete two picture when Timer finished /Gif created
+app.get('/photo/deleteAfterTimer', routes.delete_photo_afterTimer);
 
 // Turn the server on!
 var port = process.env.PORT || 5000;

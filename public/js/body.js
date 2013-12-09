@@ -43,6 +43,8 @@
 					
 				};
 				setInterval(allCapturedImage,200);
+				setInterval(timer,10);
+				if(!windowRefresh){refresh();}
 				draw();
 				
 				
@@ -60,8 +62,8 @@
 					repeat : 0,
 					worker:2,
 					quality:30,
-					width :320,
-					height:240
+					width :480,
+					height:320
 				});
 				for (var i = 0; i < 8; i++) {
 			        $('#img-' + i).each(function() {
@@ -80,8 +82,7 @@
 						base64= reader.result;
 						console.log(base64);
 						$("#image_data").val(base64);
-
-					}
+				};
 					
 					
 				});
@@ -167,11 +168,12 @@
 					thecontext_audio.fillRect(i*10,audiograph.height-frequencies[i]/4, 8 , audiograph.height);	
 
 
-					if(frequencies[i] >140) {
+					if(frequencies[i] >160) {
 						threshold ++;
 					}
 					
 				}
+
 				if(threshold > 60){
 						takePicture();
 					}
@@ -251,6 +253,28 @@
 				document.getElementById("thecanvas").style.display="";
 				isPictureTaken = false;
 			}
-	
-			
+
+			var min = 3;
+			var sec = 60;
+			var windowRefresh = false;
+			var timer = function(){
+
+				if(sec%60 == 0){
+					min -= 1;
+					sec = 60;
+				};
+				sec-= 1;
+
+				if(min <= 0){
+					min = 0;
+					sec = 0;
+					windowRefresh =true;
+				}
+				$("#sec").text(sec);
+				$("#min").text(min);	
+			}
+			var refresh = function(){
+				window.location = 'http://www.google.com';
+			}
+
 			window.addEventListener('load', initWebRTC, false);

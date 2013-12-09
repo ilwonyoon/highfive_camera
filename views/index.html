@@ -1,9 +1,63 @@
-		{{#yield-scripts}}
-				<script src="/js/gif.js"></script>
-		        <script src="/js/gif.worker.js"></script>
-		        <script src="/js/body.js"></script>
-		        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-		{{/yield-scripts}}
+
+	<div id="timer">
+		<h1><span id="min">15</span>:<span id="sec">00</span></h1>
+	</div>
+
+	<div class ="row">
+		<div id="profile_holder1" class="col-md-6">
+		{{#photos}}
+    	
+	    	<a href="/photo/{{_id}}" class="gallery">
+	    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="320" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}">
+	    	<p>
+			   Index :{{index}} <br>
+	           First Name : {{firstName}}<br> Last Name : {{last_name}}<br> 
+	    	</p>
+	    	<p id="phoneNumber1">
+	    		{{phoneNumber}}
+	    	</p>
+	    	</a>
+
+	    	<script type="text/javascript">
+	    		$(document).ready(function(){
+	    			$("#phoneNumber1").load("/sendSms/{{firstName}}/{{phoneNumber}}");
+	    			console.log("send sms message to number: "+ {{phoneNumber}} );
+
+	    		});
+			</script>
+		
+	    	{{/photos}}
+
+		</div> <!-- profile Holder -->
+		<div id="profile_holder1" class="col-md-6">
+	    	{{#otherphoto}}
+	    	
+	    	<a href="/photo/{{_id}}" class="gallery">
+	    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="320" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}">
+	    	<p>
+	    	  Index :{{index}}<br>
+	          First Name : {{firstName}}<br> Last Name : {{last_name}}<br>
+	    	</p>
+	    	<p id="phoneNumber2">
+	    		{{phoneNumber}} 
+	    	</p> 
+	    	</a>
+		
+	    	<script type="text/javascript">
+	    		$(document).ready(function(){
+	    			$("#phoneNumber2").load("/sendSms/{{firstName}}/{{phoneNumber}}");
+	    			console.log("send sms message to number: "+ {{phoneNumber}} );
+	    		});
+			</script>
+
+	    	{{/otherphoto}}
+
+
+		</div>
+
+	</div>	
+
+		
 
 		<div class="row">
 	    	<!-- Video Container -->
@@ -56,15 +110,6 @@
 	    	<img id="img-5" src="">
 	    	<img id="img-6" src="">
 	    	<img id="img-7" src="">
-	    	<img id="img-8" src="">
-	    	<img id="img-9" src="">
-	    	<img id="img-10" src="">
-	    	<img id="img-11" src="">
-	    	<img id="img-12" src="">
-	    	<img id="img-13" src="">
-	    	<img id="img-14" src="">
-	    	
-
 
 	    </div>	
 	    <br>
@@ -74,35 +119,58 @@
 
 	<div class="row">
 	<div class="col-md-offset-3 col-md-6" id="gallery">
-		{{#photos}}
+		<!-- Display Profile 1 -->
+<!-- 		{{#photos}}
     	
     	<a href="/photo/{{_id}}" class="gallery">
-    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="150" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}">
+    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="320" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}">
     	<p>
-          First Name : {{firstName}}<br> Last Name : {{last_name}}<br> Phono Number : {{phoneNumber}}
+		   Index :{{index}} <br>
+           First Name : {{firstName}}<br> Last Name : {{last_name}}<br> 
+    	</p>
+    	<p id="phoneNumber1">
+    		{{phoneNumber}}
     	</p>
     	</a>
-	
-    	{{/photos}}
 
-    	{{#otherphoto}}
+    	<script type="text/javascript">
+    		$(document).ready(function(){
+    			$("#phoneNumber1").load("/sendSms/{{firstName}}/{{phoneNumber}}");
+    			console.log("send sms message to number: "+ {{phoneNumber}} );
+    		});
+		</script>
+	
+    	{{/photos}} -->
+
+    	<!-- Display Profile 2 -->
+<!--     	{{#otherphoto}}
     	
     	<a href="/photo/{{_id}}" class="gallery">
-    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="150" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}">
+    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="320" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}">
     	<p>
-          First Name : {{firstName}}<br> Last Name : {{last_name}}<br> Phono Number : {{phoneNumber}}
+    	  Index :{{index}}<br>
+          First Name : {{firstName}}<br> Last Name : {{last_name}}<br>
     	</p>
+    	<p id="phoneNumber2">
+    		{{phoneNumber}} 
+    	</p> 
     	</a>
 	
-    	{{/otherphoto}}
+    	<script type="text/javascript">
+    		$(document).ready(function(){
+    			$("#phoneNumber2").load("/sendSms/{{firstName}}/{{phoneNumber}}");
+    			console.log("send sms message to number: "+ {{phoneNumber}} );
+    		});
+		</script>
 
+    	{{/otherphoto}} -->
 
 
     	 <div class="col-md-3">
     	<p>Do you want to submit a picture?</p>
     	
-		<form method="POST" action="/newphoto" enctype="multipart/form-data">
-			<textarea name="image_data" id="image_data"></textarea>
+		<form method="POST" action="/newgif" enctype="multipart/form-data">
+			<textarea name="image_data" id="image_data"></textarea><br><br>
 			First Name :  <input type="text" name="firstName" value=""><br>
 			Last Name :  <input type="text" name="lastName" value=""><br>
 			Phone number : <input type="text" name="phoneNumber"><br>
@@ -113,9 +181,13 @@
 
 	</div>
 </div>	
-   
+
+<script src="/js/gif.js"></script>
+<script src="/js/gif.worker.js"></script>
+<script src="/js/body.js"></script>
+
 
     
-</div>
-</div>
+<!-- </div>
+</div> -->
 
