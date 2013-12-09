@@ -5,30 +5,10 @@
    ========================================================================== */
 #thecanvas, #thevideo
 {
-	width: 640px;
-	height: 480px;
-}
-body{
-	background: black;
-	color : white;
+	width: 320px;
+	height: 240px;
 }
 
-
-div.gallery img
-{	
-	margin: 5px;
-	padding:5px;
-	border :1px solid white;
-	height : 120px;
-	width : auto;
-	float : left;
-	text-align: center;
-	overflow: auto;
-	max-height: 300px;
-	opacity: 0.5;
-	border-radius:5px;
-	box-shadow: 4px 4px 1px #888888;
-}
 div.gallery img:hover
 {
 	opacity: 1.0;
@@ -69,6 +49,57 @@ a:hover, a:active{
 	width:320px;
 	height:30px;
 }
+
+/*-----------profile_holder1.html----------------*/
+
+#profile_image
+{
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	border:0px;
+	float : left;
+}
+#profile_info, #profile_btn
+{
+	margin-left:100px;
+	margin-right: 100px;
+	margin-top:10px;
+	margin-bottom: 10px;
+	float:left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

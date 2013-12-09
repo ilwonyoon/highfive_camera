@@ -43,7 +43,7 @@
 					
 				};
 				setInterval(allCapturedImage,200);
-				setInterval(timer,10);
+				setInterval(timer,1000);
 				//if(!windowRefresh){refresh();}
 				draw();
 				
@@ -55,34 +55,36 @@
 			
 			var giftest = null;
 			
-	
 			var createGif = function(){
 				var base64;
 				var gif = new GIF({
 					repeat : 0,
 					worker:2,
 					quality:30,
-					width :480,
-					height:320
+					width :320,
+					height:240
 				});
-				for (var i = 0; i < 8; i++) {
+				for (var i = 0; i < 12; i++) {
 			        $('#img-' + i).each(function() {
 			          //console.log($(this).context);
 			          gif.addFrame($(this).context,{delay :150});
-			          console.log("add frame");
 			        });
 			      }
 				gif.on('finished',function(blob){
 					giftest = document.getElementById("giftest");
 					giftest.src = URL.createObjectURL(blob);
+					console.log(giftest.src);
 					//convert blob object to base64 in order to upload to
 					var reader = new FileReader();
 					reader.readAsDataURL(blob);
-										reader.onloadend = function(){
+					reader.onloadend = function(){
 						base64= reader.result;
-						console.log(base64);
 						$("#image_data").val(base64);
-				};
+
+						$("#gif_container").show();
+						$("#video_container").hide();
+						$("#readyBtn").hide();
+					};
 					
 					
 				});
@@ -95,7 +97,7 @@
 			// ------------------------------
 
 			var imgArray =new Array();
-			var imgLen = 8;
+			var imgLen = 12;
 			var imgCount = 0; 
 			var picture = null;
 
@@ -201,7 +203,12 @@
 						$("#upload").submit();
 						console.log("submit a picture");
 					});
-	
+					
+					$("#form_container").animate({
+						width: "toggle",
+						height : "toggle"
+					},{duration: 500});
+
 					numberOfPicture+=1;
 					document.getElementById('numberOfPicture').innerHTML =numberOfPicture;
 					createGif();
@@ -254,7 +261,7 @@
 				isPictureTaken = false;
 			}
 
-			var min = 3;
+			var min = 15;
 			var sec = 60;
 			var windowRefresh = false;
 			var timer = function(){
@@ -273,8 +280,16 @@
 				$("#sec").text(sec);
 				$("#min").text(min);	
 			}
-			var refresh = function(){
-				window.location = 'http://www.google.com';
+			var page_refresh = function(){
+				$("#profile_holder1").load("/profile_display1");
+			}
+			var page_refresh2 = function(){
+				$("#profile_holder2").load("/profile_display2");
+			}
+			var changeVis = function(){
+				console.log("change visibiity");
+				document.getElementById('video_container').display = "block";
+				document.getElementById('imageholder').display = "none";
 			}
 
 			window.addEventListener('load', initWebRTC, false);

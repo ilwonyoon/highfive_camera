@@ -2,16 +2,23 @@
 		{{#photos}}
     	
 	    	<a href="/photo/{{_id}}" class="gallery">
-	    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="320" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}">
-	    	<p>
-			   Index :{{index}} <br>
-	           First Name : {{firstName}}<br> Last Name : {{last_name}}<br> 
-	    	</p>
-	    	<p id="phoneNumber1">
-	    		{{phoneNumber}}
-	    	</p>
-	    	</a>
+	    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="320"  data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}" id="profile_image">
 
+	    	<div id="profile_info">
+	    		<p>
+				   Index :{{index}} <br>
+		           First Name : {{firstName}}<br> Last Name : {{last_name}}<br> 
+		    	</p>
+		    	<p id="phoneNumber1">
+		    		{{phoneNumber}}
+		    	</p>
+	    	</div>
+
+	    	</a>
+	    	<br>
+	    	<div id="profile_btn">
+	    		<button onclick="page_refresh();">I want another partner</button >
+	    	</div>
 	    	<script type="text/javascript">
 	    		$(document).ready(function(){
 	    			$("#phoneNumber1").load("/sendSms/{{firstName}}/{{phoneNumber}}");
@@ -23,3 +30,4 @@
     	{{/photos}}
 
 </div> <!-- profile Holder -->
+<br>

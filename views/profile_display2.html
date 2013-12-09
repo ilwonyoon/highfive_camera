@@ -1,25 +1,33 @@
-<div id="profile_holder2" class="col-md-6">
-	{{#otherphoto}}
-	
-	<a href="/photo/{{_id}}" class="gallery">
-		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="320" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}">
-	<p>
-	  Index :{{index}}<br>
-      First Name : {{firstName}}<br> Last Name : {{last_name}}<br>
-	</p>
-	<p id="phoneNumber2">
-		{{phoneNumber}} 
-	</p> 
-	</a>
+<div id="profile_holder1" class="col-md-6">
+		{{#otherphoto}}
+    	
+	    	<a href="/photo/{{_id}}" class="gallery">
+	    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="320"  data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}" id="profile_image">
 
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#phoneNumber2").load("/sendSms/{{firstName}}/{{phoneNumber}}");
-			console.log("send sms message to number: "+ {{phoneNumber}} );
-		});
-	</script>
+	    	<div id="profile_info">
+	    		<p>
+				   Index :{{index}} <br>
+		           First Name : {{firstName}}<br> Last Name : {{last_name}}<br> 
+		    	</p>
+		    	<p id="phoneNumber2">
+		    		{{phoneNumber}}
+		    	</p>
+	    	</div>
 
-	{{/otherphoto}}
+	    	</a>
+	    	<br>
+	    	<div id="profile_btn">
+	    		<button onclick="page_refresh();">I want another partner</button >
+	    	</div>
+	    	<script type="text/javascript">
+	    		$(document).ready(function(){
+	    			$("#phoneNumber2").load("/sendSms/{{firstName}}/{{phoneNumber}}");
+	    			console.log("send sms message to number: "+ {{phoneNumber}} );
 
+	    		});
+			</script>
+		
+    	{{/otherphoto}}
 
-</div>
+</div> <!-- profile Holder -->
+<br>

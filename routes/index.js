@@ -120,10 +120,7 @@ exports.new_gif = function(req, res){
   // // prepare database record
   var gifPost = new Gif(); // create Blog object
   gifPost.index = photoIndex;
-  gifPost.firstName = req.body.firstName;
-  gifPost.last_name= req.body.lastName;
-  gifPost.phoneNumber = req.body.phoneNumber;
-  gifPost.urltitle = req.body.firstName.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'_');
+  //gifPost.urltitle = req.body.photoIndex.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'_');
    
   // pick the Amazon S3 Bucket
   var s3bucket = new AWS.S3({params: {Bucket: 'hifivepicture'}});
@@ -164,6 +161,7 @@ exports.new_gif = function(req, res){
 //Display All Gif files in DB
 exports.allgif = function(req,res){
   gifQuery = Gif.find({});
+  gifQuery.sort('-created');
   gifQuery.exec(function(err,gifs){
     if(err){
       console.error(err);
@@ -467,23 +465,6 @@ exports.update_index_after_photo_upload = function(req,res){
   res.redirect('/photobooth');
 }
 
-
-
-
-
-// exports.sendSms = function(req,res){
-
-//   var number = "+19177255750"; // Set this equal to the number you want to text
-
-//   if(!number){
-//     res.send('You need to set a phone number to call in app.js');
-//   }else{
-//     phone.sendSms(number, 'Hello, this is your new twilio phone number texting you!', null, function(sms){
-//       res.send('Sending sms to ' + number);
-//     });
-//   }
-
-// }
 
 var cleanFileName = function(filename) {
     
