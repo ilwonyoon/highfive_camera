@@ -42,7 +42,7 @@
 
 					
 				};
-				setInterval(allCapturedImage,200);
+				setInterval(allCapturedImage,150);
 				setInterval(timer,1000);
 				//if(!windowRefresh){refresh();}
 				draw();
@@ -61,13 +61,13 @@
 					repeat : 0,
 					worker:2,
 					quality:30,
-					width :320,
-					height:240
+					width :480,
+					height:360
 				});
 				for (var i = 0; i < 12; i++) {
 			        $('#img-' + i).each(function() {
 			          //console.log($(this).context);
-			          gif.addFrame($(this).context,{delay :150});
+			          gif.addFrame($(this).context,{delay :100});
 			        });
 			      }
 				gif.on('finished',function(blob){
@@ -80,10 +80,6 @@
 					reader.onloadend = function(){
 						base64= reader.result;
 						$("#image_data").val(base64);
-
-						$("#gif_container").show();
-						$("#video_container").hide();
-						$("#readyBtn").hide();
 					};
 					
 					
@@ -118,6 +114,7 @@
 				    	picture = document.getElementById('img-'+imgCount+'');
 				    	//picture.id  = "img-" + imgCount;
 					    picture.style.width ="120px";
+					    picture.style.height ="90px";
 					    picture.src = imgArray[imgCount];
 					    //picture.style.display ="none";
 					    document.getElementById('gallery').appendChild(picture);
@@ -203,6 +200,11 @@
 						$("#upload").submit();
 						console.log("submit a picture");
 					});
+
+					$("#gif_container").show();
+					$("#video_container").hide();
+					$("#readyBtn").hide();
+
 					
 					$("#form_container").animate({
 						width: "toggle",
@@ -218,16 +220,16 @@
 
 					//document.getElementById("thecanvas").style.display="none";
 			}
-				else{
-					endTime = new Date().getTime();
-					//if 3 seconds is passed, enable retake picture
-					if(Math.abs(startTime-endTime || isPictureTaken ===true) > 1000) {
-						//console.log(startTime-endTime);
-						isPictureTaken = false;
+				// else{
+				// 	endTime = new Date().getTime();
+				// 	//if 3 seconds is passed, enable retake picture
+				// 	if(Math.abs(startTime-endTime || isPictureTaken ===true) > 1000) {
+				// 		//console.log(startTime-endTime);
+				// 		isPictureTaken = false;
 
 
-					}
-				}
+				// 	}
+				// }
 			}
 
 			var getScore = function(){
@@ -240,7 +242,7 @@
 				}
 				score = Math.floor(total/frequencies.length);
 				//console.log("get score :" + score);
-				document.getElementById('display_score').innerHTML= score;
+				//document.getElementById('display_score').innerHTML= score;
 				
 			}
 			var howManyPeople = function(){
@@ -291,5 +293,50 @@
 				document.getElementById('video_container').display = "block";
 				document.getElementById('imageholder').display = "none";
 			}
+
+			$(document).ready(function(){
+				// profile_display part
+				$("#profile_holder1").load("/profile_display1");
+				$("#profile_holder2").load("/profile_display2");
+				console.log("Log pictures");
+				$("#video_container").hide();
+
+				$("#start_high_five").click(function(){
+
+					$("#timer_container").animate({
+						width: "toggle",
+					    height: "toggle"
+					},{
+						duration: 500
+					});
+					$("#video_container").animate({
+						width: "toggle",
+					    height: "toggle"
+					},{
+						duration: 500
+					});
+					$("#imageholder").animate({
+						width: "toggle",
+					    height: "toggle"
+					},{
+						duration: 500
+
+					});
+					$("#readyBtn").animate({
+						width:"toggle",
+						height:"toggle"
+					},{duration:500})
+				});
+				$("#retake").click(function(){
+					isPictureTaken = false;
+					console.log("let's retake a gif");
+					$("#gif_container").hide();
+					$("#video_container").show();
+					$("#form_container").hide();
+
+				});
+			});
+
+
 
 			window.addEventListener('load', initWebRTC, false);

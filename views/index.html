@@ -1,4 +1,4 @@
-	<div class ="row">
+	<div class ="row" id="timer_container">
 		<div id="timer" align="center">
 			<h1><span id="min">15</span>:<span id="sec">00</span></h1>
 		</div>
@@ -14,8 +14,8 @@
 	<br>
 
 	<div class="row" id="readyBtn">
-		<div class="col-md-offset-4 col-md-4">
-			<button id="start_high_five" class="btn">
+		<div class="col-md-offset-3 col-md-4">
+			<button id="start_high_five" class="btn btn-link">
 				<h1>Are you ready for High-Five?</h1>
 			</button>
 			
@@ -24,19 +24,30 @@
 		<!-- Video Container -->
 		<div class="row" id="video_container">
 	    	<!-- Video Container -->
-			<div class="col-md-offset-2 col-md-8"> 
-				<h1>Your Score is : <span id="display_score">score goes here</span></h1>
+			<div class="col-md-offset-3 col-md-6"> 
+				<!-- <h1>Your Score is : <span id="display_score">score goes here</span></h1> -->
 				<h1># <span id="numberOfPicture"></span></h1>
 				<canvas id="howmanypeople"></canvas>
-				<video id="thevideo" width="320" height="240" autoplay style="display:none" muted="true"></video>
-				<canvas id="thecanvas" width="320" height="240"></canvas>
+				<video id="thevideo" autoplay style="display:none" muted="true"></video>
+				<canvas id="thecanvas"></canvas>
 		    </div>
 		</div>
 
+<style type="text/css">
+	#thecanvas
+	{
+		position: relative;
+		
+	}
+	#start_high_five
+	{
+		font-family: 'Droid Sans', sans-serif;
+	}
+</style>
 		
 		<!-- Gif image container -->	
 		<div class="row" id="gif_container" style="display:none">
-			<div class="col-md-offset-2 col-md-8"> 
+			<div class="col-md-offset-3 col-md-6"> 
 				<div id="gif_container">
 				<img src="" id="giftest"></div>
 		    </div>
@@ -44,7 +55,7 @@
 
 		<!-- Form Container -->
 		<div class="row" id="form_container" style="display:none">
-			<div class="col-md-offset-2 col-md-8" >
+			<div class="col-md-offset-3 col-md-6" >
 		    	<form method="POST" action="/newgif" enctype="multipart/form-data">
 					<textarea name="image_data" id="image_data" style="display:none"></textarea><br><br>
 					<br>
@@ -74,6 +85,7 @@
 	    	<img id="img-9" src="">
 	    	<img id="img-10" src="">
 	    	<img id="img-11" src="">
+ 
 
 
 	    </div>	
@@ -83,39 +95,7 @@
 	  
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		$("#profile_holder1").load("/profile_display1");
-		$("#profile_holder2").load("/profile_display2");
-		console.log("Log pictures");
-		$("#video_container").hide();
-		$("#start_high_five").click(function(){
-			console.log("toggle");
-			$("#video_container").animate({
-				width: "toggle",
-			    height: "toggle"
-			},{
-				duration: 500
-			});
-			$("#imageholder").animate({
-				width: "toggle",
-			    height: "toggle"
-			},{
-				duration: 500
 
-			});
-			$("#readyBtn").animate({
-				width:"toggle",
-				height:"toggle"
-			},{duration:500})
-		});
-		$("#retake").click(function(){
-			console.log("let's retake a gif");
-			$("#gif_container").hide();
-			$("#video_container").show();
-			$("#form_container").hide();
-
-		});
-	});
 </script>
 <script src="/js/gif.js"></script>
 <script src="/js/gif.worker.js"></script>

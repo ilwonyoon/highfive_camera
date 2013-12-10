@@ -39,7 +39,9 @@ var updateIndex = function(){
     }
   });
 }
-
+exports.intro = function(req,res){
+  res.render("intro.html");
+}
 
 // main page
 exports.index =  function(req,res){

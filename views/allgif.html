@@ -1,16 +1,42 @@
-	<div class="row">
-	<div class="col-md-offset-3 col-md-6" id="gallery">
-		<!-- Display Profile 1 -->
-		{{#gifs}}
-    	
-    	<a href="/allgif/{{_id}}" class="gallery">
-    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="640" class="dwdphoto img-polaroid" data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}">
-    	<p>
-		   Index :{{index}} <br>
-           First Name : {{firstName}}<br> Last Name : {{last_name}}<br>
-       </p>
 
-    	{{/gifs}}
-    	<a href="/">Back Home</a>
+      <!-- Display Profile 1 -->
+    {{#gifs}}
+      
+      <a href="/allgif/{{_id}}" class="allgif">
+        <img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="350"  data-toggle="popover" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}" id="allgif_display">
 
- 
+      {{/gifs}}
+      <a href="/">Back Home</a>
+
+
+      <audio  controls autoplay style="display:none">
+        
+        <source id="allgif_audio" src="http://planner.amorentertainment.net/songs/C/05%20GONNA%20MAKE%20YOU%20SWEAT-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+
+        var audio_list = [
+          "http://notesetimages.blog50.com/media/00/02/327759050.mp3",
+          "http://planner.amorentertainment.net/songs/C/05%20GONNA%20MAKE%20YOU%20SWEAT-1.mp3",
+          "http://mp3.ecsmedia.pl/track/music/00/00/15/44/12299706/1/5_30.mp3",
+          "http://a.tumblr.com/tumblr_lu0nt76afO1qa2pg2o1.mp3",
+          "http://dc537.4shared.com/img/1309577290/71322f0/dlink__2Fdownload_2F6iR_5FWbVi_3Ftsid_3D20131209-114244-d8c3d9f0/preview.mp3",
+        ];
+
+        var audio_index = Math.floor(Math.random()*audio_list.length);
+        $("#allgif_audio").attr('src',audio_list[audio_index]);
+        
+        console.log(audio_index);
+      })
+    </script>
+ <style type="text/css">
+ .allgif
+ {
+  float: left;
+  margin :15px;
+ }
+ </style>

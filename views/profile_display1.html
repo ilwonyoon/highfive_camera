@@ -1,14 +1,12 @@
 <div id="profile_holder1" class="col-md-6">
 		{{#photos}}
     	
-	    	<a href="/photo/{{_id}}" class="gallery">
-	    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="320"  data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}" id="profile_image">
+	    	<a href="/photo/{{_id}}" >
+	    		<img src="https://s3.amazonaws.com/hifivepicture/{{image}}" width="320" height="320" data-placement="bottom" data-content="{{firstName}}" title="{{firstName}}" id="profile_image">
 
 	    	<div id="profile_info">
-	    		<p>
-				   Index :{{index}} <br>
-		           First Name : {{firstName}}<br> Last Name : {{last_name}}<br> 
-		    	</p>
+	    		<p id="profile_info_detail1">
+	    			{{firstName}} {{last_name}}</p>
 		    	<p id="phoneNumber1">
 		    		{{phoneNumber}}
 		    	</p>

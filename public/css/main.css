@@ -5,8 +5,8 @@
    ========================================================================== */
 #thecanvas, #thevideo
 {
-	width: 320px;
-	height: 240px;
+	width: 480px;
+	height: 360px;
 }
 
 div.gallery img:hover
@@ -14,6 +14,12 @@ div.gallery img:hover
 	opacity: 1.0;
 }
 
+body
+{
+	background-color: black;
+	color:white;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+}
 
 #nav ul
 {
@@ -60,15 +66,48 @@ a:hover, a:active{
 	margin-top: 10px;
 	border:0px;
 	float : left;
+	width :320px;
+	height: 240px;
+	
 }
 #profile_info, #profile_btn
-{
+{	
+
+	font-weight: bold;
+	position: relative;
+	top : -20px;
+	width: 320px;
+	height:30px;
 	margin-left:100px;
 	margin-right: 100px;
 	margin-top:10px;
 	margin-bottom: 10px;
 	float:left;
 }
+#profile_info
+{
+	background-color: white;
+	color:black;
+}
+#phoneNumber1,#phoneNumber2
+{
+	display: none;
+}
+#profile_info_detail1, #phoneNumber1
+{	
+	margin-top: 5px;
+	margin-left: 5px;
+	text-align: left;
+}
+#profile_info_detail2, #phoneNumber2
+{	
+	margin-top: 5px;
+	margin-right:  5px;
+	text-align: right;
+}
+
+
+/*allgif.html*/
 
 
 
