@@ -121,7 +121,22 @@ a:hover, a:active{
 }
 
 
-/*allgif.html*/
+/*allprofile.html*/
+
+#allprofile_display
+{	
+	margin-left:  :30px;
+	margin-right: 100px;
+	margin-bottom: 10px;
+	margin-top: 20px;
+	float:left;
+}
+
+#all_profile_container
+{
+	position: relative;
+	left:50px;
+}
 
 
 

@@ -16,7 +16,6 @@ var s3 = new AWS.S3();
 
 //Total number of Picture
 var total= 0;
-
 //Add Index number to data
 var photoIndex =0;
 var gifIndex = 0;
@@ -91,6 +90,38 @@ exports.profile_display2  = function(req,res){
   else{
     res.send("We are waiting for Users");
   }
+}
+
+//Display All Gif files in DB
+exports.allprofile = function(req,res){
+
+  var photoQuery = Photo.find({});
+  photoQuery.exec(function(err,photos){
+    if(err){
+      console.error(err);
+      res.send("Error");
+    }else{
+      //Update all index 
+      for(var i = 0; i < photos.length; i++){
+        
+        photos[i].index = i;
+        photos[i].save();
+        //console.log("entire photo list updated : " +photos);
+      }
+    }
+  });
+  photoQuery.sort('-created');
+  photoQuery.exec(function(err,photos){
+    if(err){
+      console.error(err);
+    }else{
+      templateData=
+      {
+        photos : photos
+      }
+      res.render("allprofile.html", templateData);
+    }
+  })
 }
 
 //Upload new gif to MongoDB and s3

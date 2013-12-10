@@ -60,6 +60,7 @@ app.get('/', routes.index);
 app.get('/intro',routes.intro);
 app.get('/profile_display1', routes.profile_display1);
 app.get('/profile_display2', routes.profile_display2);
+app.get('/participants', routes.allprofile);
 
 app.post('/newgif', routes.new_gif);
 app.get('/allgif', routes.allgif);
