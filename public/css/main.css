@@ -105,7 +105,7 @@ a:hover, a:active{
 }
 #phoneNumber1,#phoneNumber2
 {
-	display: none;
+	/*display: none;*/
 }
 #profile_info_detail1, #phoneNumber1
 {	
