@@ -43,7 +43,7 @@
 					
 				};
 				setInterval(allCapturedImage,150);
-				setInterval(timer,50);
+				setInterval(timer,1000);
 				
 				
 				draw();
@@ -264,7 +264,7 @@
 				isPictureTaken = false;
 			}
 
-			var min = 1;
+			var min = 2;
 			var sec = 60;
 			var windowRefresh = false;
 			var isTimer = false;
