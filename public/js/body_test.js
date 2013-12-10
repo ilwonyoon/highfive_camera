@@ -30,7 +30,9 @@
 
 				
 				var draw = function() {
-					
+					newcanvas = document.getElementById('newcanvas');
+					newcontext = newcanvas.getContext('2d');
+					newcontext.drawImage(video,video.width * -1,0,video.width,video.height);
 					thecanvas = document.getElementById('thecanvas');
 					thecontext = thecanvas.getContext('2d');
 					thecontext.scale(-1,1);
@@ -43,7 +45,7 @@
 					
 				};
 				setInterval(allCapturedImage,150);
-				setInterval(timer,50);
+				setInterval(timer,1000);
 				
 				
 				draw();
@@ -94,7 +96,7 @@
 			// ------------------------------
 
 			var imgArray =new Array();
-			var imgLen = 16;
+			var imgLen = 12;
 			var imgCount = 0; 
 			var picture = null;
 
@@ -181,7 +183,7 @@
 				 window.requestAnimationFrame(animate);		
 			};
 
-			var isPictureTaken = true;
+			var isPictureTaken = false;
 			var startTime;
 			var endTime;
 			var numberOfPicture =0;
@@ -202,9 +204,9 @@
 						console.log("submit a picture");
 					});
 
-					$("#gif_container").show("slow");
+					$("#gif_container").show();
 					$("#video_container").hide();
-					$("#readyBtn").hide("slow");
+					$("#readyBtn").hide();
 
 					
 					$("#form_container").animate({
@@ -213,7 +215,7 @@
 					},{duration: 500});
 
 					numberOfPicture+=1;
-					//document.getElementById('numberOfPicture').innerHTML =numberOfPicture;
+					document.getElementById('numberOfPicture').innerHTML =numberOfPicture;
 					createGif();
 					getScore();
 					howManyPeople();
@@ -264,29 +266,24 @@
 				isPictureTaken = false;
 			}
 
-			var min = 1;
+			var min = 15;
 			var sec = 60;
 			var windowRefresh = false;
-			var isTimer = false;
-
 			var timer = function(){
 
-				if(!isTimer){
-						if(sec%60 == 0){
-						min -= 1;
-						sec = 60;
-					};
-					sec-= 1;
+				if(sec%60 == 0){
+					min -= 1;
+					sec = 60;
+				};
+				sec-= 1;
 
-					if(min < 0){
-						min = 0;
-						sec = 0;
-						windowRefresh =true;
-						location.reload();
-					}
-					$("#sec").text(sec);
-					$("#min").text(min);	
+				if(min <= 0){
+					min = 0;
+					sec = 0;
+					windowRefresh =true;
 				}
+				$("#sec").text(sec);
+				$("#min").text(min);	
 			}
 			var page_refresh = function(){
 				$("#profile_holder1").load("/profile_display1");
@@ -294,29 +291,33 @@
 			var page_refresh2 = function(){
 				$("#profile_holder2").load("/profile_display2");
 			}
+			var changeVis = function(){
+				console.log("change visibiity");
+				document.getElementById('video_container').display = "block";
+				document.getElementById('imageholder').display = "none";
+			}
 
 			$(document).ready(function(){
 				// profile_display part
 				$("#profile_holder1").load("/profile_display1");
 				$("#profile_holder2").load("/profile_display2");
 				console.log("Log pictures");
-				$("#video_container").hide();
+				//$("#video_container").hide();
 
 				$("#start_high_five").click(function(){
-					isPictureTaken = false;
-					isTimer = true;
+
 					$("#timer_container").animate({
 						width: "toggle",
 					    height: "toggle"
 					},{
 						duration: 500
 					});
-					// $("#video_container").animate({
-					// 	width: "toggle",
-					//     height: "toggle"
-					// },{
-					// 	duration: 500
-					// });
+					$("#video_container").animate({
+						width: "toggle",
+					    height: "toggle"
+					},{
+						duration: 500
+					});
 					$("#imageholder").animate({
 						width: "toggle",
 					    height: "toggle"
@@ -327,20 +328,14 @@
 					$("#readyBtn").animate({
 						width:"toggle",
 						height:"toggle"
-					},{duration:500});
-
-					$("#guide_lets_container").animate({
-						width:"toggle",
-						height:"toggle"
-					},{duration:500});
-
+					},{duration:500})
 				});
 				$("#retake").click(function(){
 					isPictureTaken = false;
 					console.log("let's retake a gif");
-					$("#gif_container").hide("slow");
-					//$("#video_container").show();
-					$("#form_container").hide("slow");
+					$("#gif_container").hide();
+					$("#video_container").show();
+					$("#form_container").hide();
 
 				});
 			});

@@ -21,27 +21,31 @@ body
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 }
 
+#navigation
+{
+	position: relative;
+	right:150px;
+	top:-25px;
+}
 #nav ul
 {
 	list-style-type: none;
-	margin:0;
-	padding:0;
 	overflow: hidden;
 }
 #nav li
 {	
 	list-style-type: none;
+	margin-right: 5px;
+	margin-left :5px;
 	float:right;
 }
 #nav a:link, a:visited
 {
 	display:block;
 	width:80px;
-	font-weight: bold;
 	color: #FFFFFF;
 	background-color: black;
 	text-align: center;
-	padding:0px;
 	text-decoration: none;
 	text-transform: uppercase;
 
@@ -55,7 +59,17 @@ a:hover, a:active{
 	width:320px;
 	height:30px;
 }
-
+#timer 
+{	
+	text-align: left;
+	z-index: 10001;
+	position: relative;
+	left:120px;
+}
+#timer #guide
+{
+	font-size: 70px;
+}
 /*-----------profile_holder1.html----------------*/
 
 #profile_image
@@ -72,7 +86,7 @@ a:hover, a:active{
 }
 #profile_info, #profile_btn
 {	
-
+	
 	font-weight: bold;
 	position: relative;
 	top : -20px;

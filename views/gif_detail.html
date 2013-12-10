@@ -1,16 +1,16 @@
 <div class="row">
-    <div class="span10">
+    <div class="col-md-offset-3 col-md-6">
         <article>
             <header>
             </header>
-
+            <h1>No.{{gif.index}}</h1>
             <p>
-                <img src="https://s3.amazonaws.com/hifivepicture/{{gif.image}}">
+                <img id="gif_detail" src="https://s3.amazonaws.com/hifivepicture/{{gif.image}}" >
             </p>
-            <p> Now Game Start ! Pay attention to your phone! You will get a SMS from us
-                sometime soon! </p>
-            <p>
-                <a href="/allgif/delete/{{gif._id}}" class="deleteBtn btn btn-danger">Delete Photo</a>
+            <br>
+            
+
+                <a id="del_btn" href="/allgif/delete/{{gif._id}}" class="deleteBtn btn btn-danger">Delete Photo</a>
             </p>
         </article>
         
@@ -18,3 +18,16 @@
 
     
 </div>
+
+<style type="text/css">
+    #gif_detail
+    {
+        width: 640px;
+        height: 480px;
+    }
+    #del_btn
+    {
+        position: relative;
+        left :460px;
+    }
+</style>

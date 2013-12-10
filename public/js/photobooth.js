@@ -48,7 +48,6 @@
 				};
 				draw();
 				
-				
 			};
 
 			var webRTCInit = function(stream){

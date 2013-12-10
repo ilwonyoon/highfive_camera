@@ -1,25 +1,16 @@
-	<div class="row" id="navigation">
+	<div class="row">
 		<ul id="nav">
             <li><a href="/photobooth">Photobooth</a></li>
-            <li><a href="/allgif">Gallery</a></li>    
+            <li><a href="/allgif">Gallery</a></li>
+            <li><a href="/">Home</a></li>    
 	    </ul>
 	</div>
 
-	<div class="row" id="timer_container">
-		<div id="timer" class="col-md-8">
-			<h1 id="guide">Find Your High-Five Partner in
-				<span id="min">1</span>:<span id="sec">00</span>
-			</h1>
+	<div class ="row" id="timer_container">
+		<div id="timer" align="center">
+			<h1><span id="min">15</span>:<span id="sec">00</span></h1>
 		</div>
 	</div>
-	<br><br>
-
-	<div class="row" id="guide_lets_container" style="display:none">
-		<div id="lets" class="col-md-offset-3 col-md-4">
-			<h1 >Let's High-Five !!!!</h1>	
-		</div>
-	</div>
-
 
 	<!-- display user profile and info  -->
 	<div class ="row" id="imageholder">
@@ -33,22 +24,22 @@
 	<div class="row" id="readyBtn">
 		<div class="col-md-offset-3 col-md-4">
 			<button id="start_high_five" class="btn btn-link">
-				<h1>Did you find your partner?</h1>
+				<h1>Are you ready for High-Five?</h1>
 			</button>
 			
 		</div>
 	</div>
 		<!-- Video Container -->
-		<div class="row" id="video_container" >
+		<div class="row" id="video_container">
 	    	<!-- Video Container -->
 
 			<div class="col-md-offset-3 col-md-6"> 
 				<!-- <h1>Your Score is : <span id="display_score">score goes here</span></h1> -->
-				<!-- <h1># <span id="numberOfPicture"></span></h1> -->
+				<h1># <span id="numberOfPicture"></span></h1>
 				<canvas id="howmanypeople"></canvas>
-				<video id="thevideo" width="480" height="360"autoplay  muted="true" style="display:none"></video>
-				<canvas id="thecanvas" width="480" height="360"></canvas>
-				
+				<video id="thevideo" autoplay  muted="true"></video>
+				<canvas id="thecanvas"></canvas>
+				<canvas id="newcanvas"></canvas>
 		    </div>
 		</div>
 
@@ -97,10 +88,6 @@
 	    	<img id="img-9" src="">
 	    	<img id="img-10" src="">
 	    	<img id="img-11" src="">
-	    	<img id="img-12" src="">
-	    	<img id="img-13" src="">
-	    	<img id="img-14" src="">
-	    	<img id="img-15" src="">
  
 
 
@@ -117,7 +104,7 @@
 <script src="/js/gif.worker.js"></script>
 <script src="/js/body.js"></script>
 
-		<div class="row" style="display:none" >
+		<div class="row" >
 			<!-- Audio graph container -->
 			<div id="audio_container"  class="col-md-offset-3 col-md-8">
 				<input type = "button" value ="Audio Graph On" onclick ="videoOn();">

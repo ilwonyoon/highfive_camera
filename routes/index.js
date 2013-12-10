@@ -25,20 +25,7 @@ var gifIndex = 0;
 var profile1_id;
 var profile2_id;
 
-var updateIndex = function(){
-  var update = Photo.find({});
-  update.exec(function(err,photos){
-    if(err){
-      console.error(err);
-    }else{
-      for(var i = 0; i < photos.length; i++){
-        photos[i].index = i;
-        photos[i].save();
-      }
-      console.log("update all index");
-    }
-  });
-}
+
 exports.intro = function(req,res){
   res.render("intro.html");
 }
@@ -121,7 +108,7 @@ exports.new_gif = function(req, res){
   var gif_buffer = new Buffer(gifData, 'base64');
   // // prepare database record
   var gifPost = new Gif(); // create Blog object
-  gifPost.index = photoIndex;
+  gifPost.index = gifIndex;
   //gifPost.urltitle = req.body.photoIndex.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'_');
    
   // pick the Amazon S3 Bucket
@@ -162,7 +149,22 @@ exports.new_gif = function(req, res){
 
 //Display All Gif files in DB
 exports.allgif = function(req,res){
-  gifQuery = Gif.find({});
+
+  var gifQuery = Gif.find({});
+  gifQuery.exec(function(err,gifs){
+    if(err){
+      console.error(err);
+      res.send("Error");
+    }else{
+      //Update all index 
+      for(var i = 0; i < gifs.length; i++){
+        
+        gifs[i].index = i;
+        gifs[i].save();
+        //console.log("entire photo list updated : " +photos);
+      }
+    }
+  });
   gifQuery.sort('-created');
   gifQuery.exec(function(err,gifs){
     if(err){

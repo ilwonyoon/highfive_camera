@@ -81,7 +81,8 @@ app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
   var valid = "+1";
   var number = req.params.phoneNumber;
   var profile_name = req.params.firstName;
-  
+  var textContent ="! Your High-Five Partner is looking for you! Come to room 15!";
+  textContent =profile_name.concat(textContent);
   number = number.toString();
   number = number.replace("-","");
   if(number.charAt(0) != "+" ){
@@ -95,7 +96,7 @@ app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
     //   res.send('Sending sms to ' + number);
     // });
     res.send('Sent SMS to ' + profile_name);
-    console.log('Sending sms to Number :' + number + "," + profile_name);
+    console.log('Sending sms to Number :' + number + "," + textContent);
   }
 });
 
