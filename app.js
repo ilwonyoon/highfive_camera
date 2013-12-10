@@ -82,7 +82,8 @@ app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
   var valid = "+1";
   var number = req.params.phoneNumber;
   var profile_name = req.params.firstName;
-  var textContent ="! Your High-Five Partner is looking for you! Come to room 15!";
+  var textContent ="!Your High-Five Partner is looking for you! Come to room 15!";
+  
   textContent =profile_name.concat(textContent);
   number = number.toString();
   number = number.replace("-","");
@@ -93,9 +94,9 @@ app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
   if(!number){
     res.send('You need to set a phone number to call in app.js');
   }else{
-    // phone.sendSms(number, 'Hello, this is your new twilio phone number texting you!', null, function(sms){
-    //   res.send('Sending sms to ' + number);
-    // });
+    phone.sendSms(number, textContent, null, function(sms){
+      res.send('Sending sms to ' + number);
+    });
     res.send('Sent SMS to ' + profile_name);
     console.log('Sending sms to Number :' + number + "," + textContent);
   }
