@@ -81,6 +81,7 @@ app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
   textContent =profile_name.concat(textContent);
   number = number.toString();
   number = number.replace("-","");
+  mediaUrl = "http://mynokiablog.com/wp-content/uploads/2009/04/5800-landscape-tb-480x360.jpg";
   if(number.charAt(0) != "+" ){
     number = valid.concat(number);
   }
@@ -88,36 +89,15 @@ app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
   if(!number){
     res.send('You need to set a phone number to call in app.js');
   }else{
-    // phone.sendSms(number, textContent, null, function(sms){
-    //   res.send('Sending sms to ' + number);
-    // });
+    phone.sendSms(number, "hifivetest.herokuapp.com", null, function(sms){
+      res.send('Sending sms to ' + number);
+    });
+
     res.send('Sent SMS to ' + profile_name);
+    
     console.log('Sending sms to Number :' + number + "," + textContent);
   }
 });
-
-app.post('/send',function(req,res){
- 
-  // These vars are your accountSid and authToken from twilio.com/user/account
- 
-  var accountSid = 'AC6fc34d5a4554079bc112ed50fbef313e';
-  var authToken = "b90dbcfc8ba59523e7c55e411ea8bfbf";
- // to: "+17732512040",
- //      from: "+17059901587",
-  var client = require('twilio')(accountSid, authToken);
-
-  client.messages.create({
-    body: "Jenny please?! I love you <3",
-    to: "+17732512040",
-    from: "+17059901587",
-    mediaUrl: "http://www.example.com/hearts.png"
-}, function(err, message) {
-    process.stdout.write(message.sid);
-});
-
-});
-
-
 
 
 // Turn the server on!

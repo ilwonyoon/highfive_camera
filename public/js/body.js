@@ -248,8 +248,8 @@
 				});
 			});
 			$("#sendtext").click(function(){
-				$("#sendtext").submit();
-			})
+				load("/sendSms/ilwonyoon/7732512040");
+			});
 
 		});
 
