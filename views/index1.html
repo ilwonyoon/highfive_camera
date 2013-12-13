@@ -1,33 +1,76 @@
-
-	<div class="row" id="readyBtn">
-		<div class="col-md-offset-3 col-md-4">
-			<button id="start_high_five" class="btn btn-link">
-				<h1 id="logo">high five</h1>
-				<p> will create a gif!</p>
-			</button>
-			
+		<div class="row">
+			<div class="col-md-offset-3 col-md-4">
+					<h1 id="logo">high five</h1>
+					<p> will create a gif!</p>
+			</div>
 		</div>
-	</div>
-		<!-- Video Container -->
+
+	<!-- Video Container -->
 		<div class="row" id="video_container" >
 			<div class="col-md-offset-3 col-md-6" > 
-				<!-- <h1># <span id="numberOfPicture"></span></h1> -->
-<!-- 				<canvas id="howmanypeople"></canvas>
- -->				<video id="thevideo" width="640" height="480"autoplay  muted="true" style="display:none"></video>
-				<canvas id="thecanvas" width="480" height="360"></canvas>
-
-				
-		    </div>
+				<video id="thevideo" width="640" height="480"autoplay  muted="true" style="display:none"></video>
+				<canvas id="thecanvas" width="480" height="360"></canvas>    
+			</div> 
 		</div>
 
+	<!-- Gif image & button Container -->
+	<div id="gif_all_container">
 		<!-- Gif image container -->	
 		<div class="row" id="gif_container" style="display:none" >
 			<div class="col-md-offset-3 col-md-6" id="giflayers" width="640" height="480"> 
 				<canvas id="gif_box" width="540" height="480"></canvas>
 				<img src="http://mynokiablog.com/wp-content/uploads/2009/04/5800-landscape-tb-480x360.jpg" width="480" height="360" id="gif_box_img">
-
-		    </div>
+			 </div>
 		</div>
+
+	<!-- Form Container -->
+		<div class="row" id="form_container" style="display:none">
+			<div class="col-md-offset-3 col-md-6" >
+		    	<form method="POST" action="/newgif" enctype="multipart/form-data">
+					<textarea name="image_data" id="image_data" style="display:none"></textarea><br><br>
+					<br>
+					
+					<input type="submit" class="btn" value="submit" id="upload">
+				</form>
+				<button id="retake" class="btn">retake</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Image Array : that captures each picture every 200ms -->
+	<div class="row" >
+	    	<!-- Add images -->
+	    	<div id="gallery" class="gallery col-md-offset-3 col-md-6"  ></div>
+	    	<img id="img-0" src="">
+	    	<img id="img-1" src="">
+	    	<img id="img-2" src="">
+	    	<img id="img-3" src="">
+	    	<img id="img-4" src="">
+	    	<img id="img-5" src="">
+	    	<img id="img-6" src="">
+	    	<img id="img-7" src="">
+	    	<img id="img-8" src="">
+	    	<img id="img-9" src="">
+	    	<img id="img-10" src="">
+	    	<img id="img-11" src="">
+	    	<img id="img-12" src="">
+	    	<img id="img-13" src="">
+	    	<img id="img-14" src="">
+	    	<img id="img-15" src="">
+	 </div>	
+	 	
+		<div class="row"  style="display:none">
+			<!-- Audio graph container -->
+			<div id="audio_container"  class="col-md-offset-3 col-md-8">
+				<input type = "button" value ="AudioGraph On" onclick ="videoOn();">
+				<canvas id="audiograph" width="640" height="100" style="display:none"></canvas >
+				<!-- Have a sound threshold slider here -->
+			</div>
+		</div>
+
+		<script src="/js/gif.js"></script>
+		<script src="/js/gif.worker.js"></script>
+		<script src="/js/body.js"></script>
 
 		<style type="text/css">
 			#giflayers
@@ -51,73 +94,3 @@
 			}
 
 		</style>
-
-		<!-- Form Container -->
-		<div class="row" id="form_container" style="display:none">
-			<div class="col-md-offset-3 col-md-6" >
-		    	<form method="POST" action="/newgif" enctype="multipart/form-data">
-					<textarea name="image_data" id="image_data" style="display:none"></textarea><br><br>
-					<br>
-					
-					<input type="submit" class="btn" value="submit" id="upload">
-					
-				</form>
-				<button id="retake" class="btn">retake</button>
-			</div>
-		</div>
-		
-
-			<br>
-
-    	<div class="row" style="display:none">
-	    	<!-- Add images -->
-	    	<div id="gallery" class="gallery col-md-offset-3 col-md-6"  ></div>
-	    	<img id="img-0" src="">
-	    	<img id="img-1" src="">
-	    	<img id="img-2" src="">
-	    	<img id="img-3" src="">
-	    	<img id="img-4" src="">
-	    	<img id="img-5" src="">
-	    	<img id="img-6" src="">
-	    	<img id="img-7" src="">
-	    	<img id="img-8" src="">
-	    	<img id="img-9" src="">
-	    	<img id="img-10" src="">
-	    	<img id="img-11" src="">
-	    	<img id="img-12" src="">
-	    	<img id="img-13" src="">
-	    	<img id="img-14" src="">
-	    	<img id="img-15" src="">
- 
-
-
-	    </div>	
-	    <br>
-	    <br>
-	    <br>
-	  
-
-<script type="text/javascript">
-
-</script>
-<script src="/js/gif.js"></script>
-<script src="/js/gif.worker.js"></script>
-<script src="/js/body.js"></script>
-
-		<div class="row"  style="display:none">
-			<!-- Audio graph container -->
-			<div id="audio_container"  class="col-md-offset-3 col-md-8">
-				<input type = "button" value ="Audio Graph On" onclick ="videoOn();">
-				<input id ="turnoff" type = "button" value ="Audio Graph Off" onclick ="videoOff();">
-			
-				<input type = "button" value ="Retake" onclick ="retake();">
-				<button id="createGif" onclick="createGif();">Gif</button>
-
-				<canvas id="audiograph" width="640" height="100" style="display:none"></canvas >
-			</div>
-		</div>
-
-    
-<!-- </div>
-</div> -->
-

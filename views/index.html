@@ -1,88 +1,83 @@
-	<div class="row" id="navigation">
-		<ul id="nav">
-            <li><a href="/photobooth">Photobooth</a></li>
-            <li><a href="/allgif">Gallery</a></li>    
-	    </ul>
-	</div>
-
-	<div class="row" id="timer_container">
-		<div id="timer" class="col-md-8">
-			<h1 id="guide">Find Your High-Five Partner in
-				<span id="min">1</span>:<span id="sec">00</span>
-			</h1>
+		<div class="row">
+			<div class="col-md-offset-3 col-md-4">
+					<h1 id="logo">high five : <span id="clampeval"></span></h1>
+					<p> will create a gif! <span id="clamp"></span></p>
+			</div>
 		</div>
-	</div>
-	<br><br>
 
-	<div class="row" id="guide_lets_container" style="display:none">
-		<div id="lets" class="col-md-offset-3 col-md-4">
-			<h1 >Let's High-Five !!!!</h1>	
-		</div>
-	</div>
-
-
-	<!-- display user profile and info  -->
-	<div class ="row" id="imageholder">
-			<div id="profile_holder1" class="col-md-6">
+	<!-- Video Container -->
+		<div class="row" id="video_container">
+			<div class="col-md-offset-3 col-md-6" > 
+				<video id="thevideo" width="640" height="480"autoplay  muted="true" style="display:none"></video>
+				<canvas id="thecanvas" width="480" height="360"></canvas>    
 			</div> 
-			<div id="profile_holder2" class="col-md-6">
-			</div>
-	</div>
-	<br>
-
-	<div class="row" id="readyBtn">
-		<div class="col-md-offset-3 col-md-4">
-			<button id="start_high_five" class="btn btn-link">
-				<h1>Did you find your partner?</h1>
-			</button>
-			
-		</div>
-	</div>
-		<!-- Video Container -->
-		<div class="row" id="video_container" >
-	    	<!-- Video Container -->
-
-			<div class="col-md-offset-3 col-md-6"> 
-				<!-- <h1>Your Score is : <span id="display_score">score goes here</span></h1> -->
-				<!-- <h1># <span id="numberOfPicture"></span></h1> -->
-				<canvas id="howmanypeople"></canvas>
-				<video id="thevideo" width="480" height="360"autoplay  muted="true" style="display:none"></video>
-				<canvas id="thecanvas" width="480" height="360"></canvas>
-				
-		    </div>
 		</div>
 
-<style type="text/css">
-
-
-</style>
-		
 		<!-- Gif image container -->	
-		<div class="row" id="gif_container" style="display:none">
-			<div class="col-md-offset-3 col-md-6"> 
-				<div id="gif_container">
-				<img src="" id="giftest"></div>
-		    </div>
+		<div class="row" id="gif_container" >
+			<div class="col-md-offset-3 col-md-6" id="gif_canvas_control">
+				<canvas id="gif_box"></canvas> 
+				<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTBYvYXjFCJ4y3nu9ae4TbVq20w1U93FL-tqGMTT13ijyVPioq5" width="480" height="360" id="gif_box_img">
+		    	<form method="POST" action="/newgif" enctype="multipart/form-data" id="form_container">
+					<textarea name="image_data" id="image_data" style="display:none" ></textarea><br><br><br>
+					<input type="submit" class="btn btn-danger" value="submit" id="upload">
+				</form><br>
+				<button id="retake" class="btn btn-success">retake</button>
+				</div>
 		</div>
+	
+	<style type="text/css">
 
-		<!-- Form Container -->
-		<div class="row" id="form_container" style="display:none">
-			<div class="col-md-offset-3 col-md-6" >
-		    	<form method="POST" action="/newgif" enctype="multipart/form-data">
-					<textarea name="image_data" id="image_data" style="display:none"></textarea><br><br>
-					<br>
-					
-					<input type="submit" class="btn" value="submit" id="upload">
-					
-				</form>
-				<button id="retake" class="btn">retake</button>
-			</div>
-		</div>
-		
+		#video_container, #gif_container{
+			position: relative;
+		}
 
-			<br>
+		#gif_canvas_control
+		{
+			position:relative;
+			top:-1100px;
 
-    	<div class="row">
+		}
+		#gif_box
+		{
+			position: absolute;
+			width:520px;
+			height:480px;
+			z-index: -1;		
+		}
+		#gif_box_img
+		{	
+			position: relative;
+			top:20px;
+			left:20px;
+			z-index:1000;
+		}
+		#form_container
+		{
+			position: relative;
+			z-index: 1000;
+		}
+		#upload /*upload button*/
+		{	
+			font-family:"Gill Sans";
+			position: relative;
+			z-index: 1000;
+			left:420px;
+			text-transform: uppercase;
+		}
+		#retake /*retake button*/
+		{	
+			font-family:"Gill Sans";
+			position: relative;
+			z-index: 1000;
+			top: -73px;
+			left:330px;
+			text-transform: uppercase;
+		}
+
+	</style>
+	<!-- Image Array : that captures each picture every 200ms -->
+	<div class="row" style="display:none">
 	    	<!-- Add images -->
 	    	<div id="gallery" class="gallery col-md-offset-3 col-md-6"  ></div>
 	    	<img id="img-0" src="">
@@ -101,36 +96,31 @@
 	    	<img id="img-13" src="">
 	    	<img id="img-14" src="">
 	    	<img id="img-15" src="">
- 
-
-
-	    </div>	
-	    <br>
-	    <br>
-	    <br>
-	  
-
-<script type="text/javascript">
-
-</script>
-<script src="/js/gif.js"></script>
-<script src="/js/gif.worker.js"></script>
-<script src="/js/body.js"></script>
-
-		<div class="row" style="display:none" >
+	 </div>	
+	 	
+		<div class="row" >
 			<!-- Audio graph container -->
 			<div id="audio_container"  class="col-md-offset-3 col-md-8">
-				<input type = "button" value ="Audio Graph On" onclick ="videoOn();">
-				<input id ="turnoff" type = "button" value ="Audio Graph Off" onclick ="videoOff();">
-			
-				<input type = "button" value ="Retake" onclick ="retake();">
-				<button id="createGif" onclick="createGif();">Gif</button>
-
-				<canvas id="audiograph" width="640" height="100" style="display:none"></canvas >
+				<canvas id="audiograph" width="480" height="200" ></canvas ><br>
+				<input type = "button" value ="AudioGraph On" id="audioBtn">
+				<!-- Have a sound threshold slider here -->
 			</div>
 		</div>
 
-    
-<!-- </div>
-</div> -->
+		<script src="/js/gif.js"></script>
+		<script src="/js/gif.worker.js"></script>
+		<script src="/js/body.js"></script>
 
+		<style type="text/css">
+
+			h1{
+				margin-top:20px;
+			  font-family: "Rockwell";
+				  font-weight:bold;
+			font-size:60px;
+			text-align:center;
+
+
+			}
+
+		</style>

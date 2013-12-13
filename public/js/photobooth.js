@@ -1,7 +1,7 @@
 		$(document).ready(function(){
 
 			//if Picture is taken, change display to form
-			$("#takePicture").click(function(){
+				$("#takePicture").click(function(){
 				$("#video_container").hide();
 				$("#submitForm").show();
 
@@ -22,6 +22,9 @@
 			
 			var thecanvas = null;
 			var thecontext = null;
+
+			var back = null;
+			var backContext = null;
 			var video;
 			
 			var initWebRTC = function() {
@@ -38,12 +41,20 @@
 					navigator.getUserMedia({video: true},webRTCInit, function(error) {alert("Failure " + error.code);});
 				}
 
-				
+				thecanvas = document.getElementById('thecanvas');
+				back = document.getElementById('back');
 				var draw = function() {
-					thecanvas = document.getElementById('thecanvas');
+
+					backContext = back.getContext('2d');
+					backContext.fillStyle = "rgb(255,255,255)";
+					backContext.fillRect(0,0,640, 480);
+					
 					thecontext = thecanvas.getContext('2d');
 					thecontext.scale(-1,1);
+					video.width = 480;
+					video.height = 360;
 					thecontext.drawImage(video,video.width * -1,0,video.width,video.height);
+					console.log(video.width)
 					window.requestAnimationFrame(draw);	
 				};
 				draw();

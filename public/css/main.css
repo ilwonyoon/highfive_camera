@@ -3,10 +3,13 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-#thecanvas, #thevideo
+
+#logo
 {
-	width: 480px;
-	height: 360px;
+	 font-family: "Rockwell", "Courier New", Courier, Georgia,
+                 Times, "Times New Roman", serif;
+     text-transform: uppercase;
+     font-weight: bold;
 }
 
 div.gallery img:hover
@@ -52,90 +55,6 @@ body
 }
 a:hover, a:active{
 	background-color: #3B3B3B;
-}
-
-#howmanypeople
-{
-	width:320px;
-	height:30px;
-}
-#timer 
-{	
-	text-align: left;
-	z-index: 10001;
-	position: relative;
-	left:120px;
-}
-#timer #guide
-{
-	font-size: 70px;
-}
-/*-----------profile_holder1.html----------------*/
-
-#profile_image
-{
-	margin-left: 100px;
-	margin-right: 100px;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	border:0px;
-	float : left;
-	width :320px;
-	height: 240px;
-	
-}
-#profile_info, #profile_btn
-{	
-	
-	font-weight: bold;
-	position: relative;
-	top : -20px;
-	width: 320px;
-	height:30px;
-	margin-left:100px;
-	margin-right: 100px;
-	margin-top:10px;
-	margin-bottom: 10px;
-	float:left;
-}
-#profile_info
-{
-	background-color: white;
-	color:black;
-}
-#phoneNumber1,#phoneNumber2
-{
-	/*display: none;*/
-}
-#profile_info_detail1, #phoneNumber1
-{	
-	margin-top: 5px;
-	margin-left: 5px;
-	text-align: left;
-}
-#profile_info_detail2, #phoneNumber2
-{	
-	margin-top: 5px;
-	margin-right:  5px;
-	text-align: right;
-}
-
-
-/*allprofile.html*/
-
-#allprofile_display
-{	
-	margin-left:  :30px;
-	margin-right: 100px;
-	margin-bottom: 10px;
-	margin-top: 20px;
-	float:left;
-}
-
-#all_profile_container
-{
-	position: relative;
-	left:50px;
 }
 
 

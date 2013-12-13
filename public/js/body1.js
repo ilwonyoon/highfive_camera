@@ -37,13 +37,12 @@
 			thecontext.scale(-1,1);
 			video.width = 480;
 			video.height = 360;
-			thecontext.drawImage(video,video.width * -1,0,video.width,video.height);
+			thecontext.drawImage(video,video.width * -1 -40,40,video.width,video.height);
 			
 			window.requestAnimationFrame(draw);		
 		};
 
 		setInterval(allCapturedImage,150);
-		
 		draw();
 				
 				
@@ -67,7 +66,7 @@
 	        });
 	      }
 		gif.on('finished',function(blob){
-			giftest = document.getElementById("gif_box_img");
+			giftest = document.getElementById("giftest");
 			giftest.src = URL.createObjectURL(blob);
 			console.log(giftest.src);
 			//convert blob object to base64 in order to upload to
@@ -128,66 +127,38 @@
 			analyser = (analyser || audioContext.createAnalyser());
 			audioSource.connect(analyser);
 			// frequencies = new Uint8Array(analyser.frequencyBinCount/128);
-			frequencies = new Uint8Array(analyser.frequencyBinCount/32);
+			frequencies = new Uint8Array(analyser.frequencyBinCount/16);
 			console.log(frequencies.length);
 			analyser.getByteFrequencyData(frequencies);
 			window.requestAnimationFrame(animate);
-			setInterval(clampEvaluation,150);
-			
 
 		};
 	// <=================Audio Animation===================>
-		var threshold = 130;
 		var animate = function() {
-			
+
 			audiograph = document.getElementById('audiograph');
 			thecontext_audio = audiograph.getContext('2d');
+			
 			analyser.getByteFrequencyData(frequencies);
 			thecontext_audio.clearRect(0,0,audiograph.width, audiograph.height);
 			thecontext_audio.fillStyle="rgb(24,24,24)";
 			thecontext_audio.fillRect(0,0,audiograph.width,audiograph.height);
 			//Indentify clamps with frequencies of Input
-			
-			var countThreshold = null;
-			
+			var threshold = null;
 			for (var i = 0; i < frequencies.length; i++)
 			{	
 				thecontext_audio.fillStyle = "rgb(200,124,255);"
-				thecontext_audio.fillRect(i*15,audiograph.height-frequencies[i]/2, 12 , audiograph.height);	
-				
-				if(frequencies[i] >threshold) {
-					countThreshold ++;
+				thecontext_audio.fillRect(i*10,audiograph.height-frequencies[i]/4, 8 , audiograph.height);	
+				if(frequencies[i] >160) {
+					threshold ++;
 				}				
 			}
-			if(countThreshold > 30 && clamp_eval >22){
-				takePicture();
+
+			if(threshold > 60){
+					takePicture();
 			}
-			window.requestAnimationFrame(animate);		
-		};
-
-		var cur_val;
-		var last_val;
-		var clamp_eval;
-
-		var clampEvaluation = function() {
 			
-			analyser.getByteFrequencyData(frequencies);
-			cur_val = 0;
-			for (var i = 0; i < frequencies.length; i++)
-			{	
-				cur_val += frequencies[i];			
-			}
-			clamp_eval= Math.floor(Math.abs((cur_val-last_val)/32));
-			document.getElementById('clampeval').innerHTML = clamp_eval;
-
-			if(clamp_eval > 30 && clamp_eval <50) {
-				document.getElementById("clamp").innerHTML = "You can do better";
-			}else if(clamp_eval >50 && clamp_eval <80){
-				document.getElementById("clamp").innerHTML = "Ha? I can hear something!";
-			}else if(clamp_eval >80){
-				document.getElementById("clamp").innerHTML = "You rock!";
-			}
-			last_val = cur_val;
+			 window.requestAnimationFrame(animate);		
 		};
 
 	// <=================Capture Image & Gif===================>
@@ -207,19 +178,22 @@
 						$("#upload").submit();
 						console.log("submit a picture");
 					});
+					
+					$("#form_container").animate({
+						width: "toggle",
+						height : "toggle"
+					},{duration: 500});
 					createGif();
 					getScore();
-					$("#gif_container").animate({top:"1100px"},"1000");
-					$("#video_container").hide();
 			}
-				// else{
-				// 	endTime = new Date().getTime();
-				// 	//if 1 seconds is passed, enable retake picture
-				// 	if(Math.abs(startTime-endTime || isPictureTaken ===true) > 1000) {
-				// 		//console.log(startTime-endTime);
-				// 		isPictureTaken = false;
-				// 	}
-				// }
+				else{
+					endTime = new Date().getTime();
+					//if 1 seconds is passed, enable retake picture
+					if(Math.abs(startTime-endTime || isPictureTaken ===true) > 1000) {
+						//console.log(startTime-endTime);
+						isPictureTaken = false;
+					}
+				}
 			}
 
 		var getScore = function(){
@@ -230,19 +204,6 @@
 			}
 			score = Math.floor(total/frequencies.length);
 		}
-		$(document).ready(function(){
-			$("#audioBtn").click(function(){
-			$("#audiograph").toggle();
-			});
-			$("#retake").click(function(){
-				console.log("retake");
-				isPictureTaken = false;
-				$("#gif_container").animate({top:"-1100px"},"slow",function(){
-					$("#video_container").show('fast');
-				});
-			});
-
-		});
 
 		window.addEventListener('load', initWebRTC, false);
 

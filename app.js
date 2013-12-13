@@ -51,6 +51,12 @@ var TwilioClient = require('heroku-twilio').Client,
 /* Get the caller_id and create a phone number object with it */
 var phone = client.getPhoneNumber(config.caller_id);
 
+// TWILIO_ACCOUNT_SID=AC6fc34d5a4554079bc112ed50fbef313e
+// TWILIO_AUTH_TOKEN=b90dbcfc8ba59523e7c55e411ea8bfbf
+
+// var accountSid = 'AC6fc34d5a4554079bc112ed50fbef313e';
+// var authToken = "{{ b90dbcfc8ba59523e7c55e411ea8bfbf }}";
+// var client1 = require('node_modules/twilio/lib')(accountSid, authToken);
 //------------------SETUP FOR TWILIO END------------------
 
 
@@ -77,13 +83,24 @@ app.get('/update_index_after_photo_upload', routes.update_index_after_photo_uplo
 
 app.get('/test', routes.test);
 
+app.get('/mms', function(req,res){
+  client.messages.create({
+    body: "Jenny please?! I love you <3",
+    to: "+15558675309",
+    from: "+13313304899",
+    mediaUrl: "http://www.example.com/hearts.png"
+}, function(err, message) {
+    process.stdout.write(message.sid);
+  });
+});
+
 app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
 
   var valid = "+1";
   var number = req.params.phoneNumber;
   var profile_name = req.params.firstName;
   var textContent ="!Your High-Five Partner is looking for you! Come to room 15!";
-  
+
   textContent =profile_name.concat(textContent);
   number = number.toString();
   number = number.replace("-","");
@@ -94,9 +111,9 @@ app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
   if(!number){
     res.send('You need to set a phone number to call in app.js');
   }else{
-    phone.sendSms(number, textContent, null, function(sms){
-      res.send('Sending sms to ' + number);
-    });
+    // phone.sendSms(number, textContent, null, function(sms){
+    //   res.send('Sending sms to ' + number);
+    // });
     res.send('Sent SMS to ' + profile_name);
     console.log('Sending sms to Number :' + number + "," + textContent);
   }

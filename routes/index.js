@@ -351,7 +351,7 @@ exports.delete_photo = function(req, res) {
 
           // else redirect to main page
 
-          res.redirect('/')
+          res.redirect('/participants')
 
         })
       });
