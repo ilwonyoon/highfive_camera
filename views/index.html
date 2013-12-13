@@ -4,6 +4,9 @@
 					<h1 id="logo">high five !</h1>
 					<p id="logo_p"> will create a gif <span id="clamp"></span>
 					<span id="clampeval"></span></p>
+					<form method="POST" action="/send" >
+					<input type="submit" class="btn btn-danger" value="send" id="sendtext">
+				</form><br>
 			</div>
 		</div>
 
@@ -31,7 +34,7 @@
 		<div class="row" id="gif_container" style="display:none" >
 			<div class="col-md-offset-3 col-md-6" id="gif_canvas_control">
 				<canvas id="gif_box"></canvas> 
-				<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTBYvYXjFCJ4y3nu9ae4TbVq20w1U93FL-tqGMTT13ijyVPioq5" width="480" height="360" id="gif_box_img">
+				<img src="" width="480" height="360" id="gif_box_img">
 		    	<form method="POST" action="/newgif" enctype="multipart/form-data" id="form_container">
 					<textarea name="image_data" id="image_data" style="display:none" ></textarea><br><br><br>
 					<input type="submit" class="btn btn-danger" value="submit" id="upload">

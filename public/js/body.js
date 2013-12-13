@@ -247,6 +247,9 @@
 					$("#audio_container").show('fast');
 				});
 			});
+			$("#sendtext").click(function(){
+				$("#sendtext").submit();
+			})
 
 		});
 

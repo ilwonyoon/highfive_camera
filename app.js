@@ -96,6 +96,30 @@ app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
   }
 });
 
+app.post('/send',function(req,res){
+ 
+  // These vars are your accountSid and authToken from twilio.com/user/account
+ 
+  var accountSid = 'AC6fc34d5a4554079bc112ed50fbef313e';
+  var authToken = "b90dbcfc8ba59523e7c55e411ea8bfbf";
+ // to: "+17732512040",
+ //      from: "+17059901587",
+  var client = require('twilio')(accountSid, authToken);
+
+  client.messages.create({
+    body: "Jenny please?! I love you <3",
+    to: "+17732512040",
+    from: "+17059901587",
+    mediaUrl: "http://www.example.com/hearts.png"
+}, function(err, message) {
+    process.stdout.write(message.sid);
+});
+
+});
+
+
+
+
 // Turn the server on!
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
