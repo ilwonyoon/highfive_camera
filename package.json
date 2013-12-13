@@ -10,7 +10,8 @@
     "moment" : "1.7.2",
     "aws-sdk" : "v0.9.8-pre.9",
     "commander" : "0.x.x",
-    "heroku-twilio" : "0.0.x"
+    "heroku-twilio" : "0.0.x",
+    "twilio": "1.2"
   },
 
   "engines" : {
