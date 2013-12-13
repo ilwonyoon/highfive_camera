@@ -209,8 +209,11 @@
 					});
 					createGif();
 					getScore();
-					$("#gif_container").animate({top:"1100px"},"1000");
+					$("#gif_container").css("display","block");
+					$("#gif_container").animate({top:"1500px"},"1000");
 					$("#video_container").hide();
+					$("#gif_display").hide();
+					$("#audio_container").hide();
 			}
 				// else{
 				// 	endTime = new Date().getTime();
@@ -231,6 +234,7 @@
 			score = Math.floor(total/frequencies.length);
 		}
 		$(document).ready(function(){
+			$("#gif_display").load("/mainpage_gifs #import_gif");
 			$("#audioBtn").click(function(){
 			$("#audiograph").toggle();
 			});
@@ -239,6 +243,8 @@
 				isPictureTaken = false;
 				$("#gif_container").animate({top:"-1100px"},"slow",function(){
 					$("#video_container").show('fast');
+					$("#gif_display").show('fast');
+					$("#audio_container").show('fast');
 				});
 			});
 

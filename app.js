@@ -64,36 +64,13 @@ var phone = client.getPhoneNumber(config.caller_id);
 var routes = require('./routes/index.js');
 app.get('/', routes.index);
 app.get('/intro',routes.intro);
-app.get('/profile_display1', routes.profile_display1);
-app.get('/profile_display2', routes.profile_display2);
-app.get('/participants', routes.allprofile);
-
 app.post('/newgif', routes.new_gif);
 app.get('/allgif', routes.allgif);
 app.get('/allgif/:gif_id', routes.each_gif);
 app.get('/allgif/delete/:gif_id', routes.delete_gif);
-
-app.get('/photobooth',routes.photobooth);
-app.post('/photobooth_upload', routes.photobooth_upload);
-app.get('/deleteProfileFromServer', routes.delete_photo_afterTimer);
-
+app.get('/mainpage_gifs',routes.mainpage_gifs);
 //update index from 0 ~ DB.length
 app.get('/update_index', routes.update_index);
-app.get('/update_index_after_photo_upload', routes.update_index_after_photo_upload);
-
-app.get('/test', routes.test);
-
-app.get('/mms', function(req,res){
-  client.messages.create({
-    body: "Jenny please?! I love you <3",
-    to: "+15558675309",
-    from: "+13313304899",
-    mediaUrl: "http://www.example.com/hearts.png"
-}, function(err, message) {
-    process.stdout.write(message.sid);
-  });
-});
-
 app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
 
   var valid = "+1";
@@ -118,13 +95,6 @@ app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
     console.log('Sending sms to Number :' + number + "," + textContent);
   }
 });
-
-app.get('/photo/delete/:photo_id', routes.delete_photo);
-app.get('/photo/:photo_id', routes.display_photo);
-
-
-//Delete two picture when Timer finished /Gif created
-app.get('/photo/deleteAfterTimer', routes.delete_photo_afterTimer);
 
 // Turn the server on!
 var port = process.env.PORT || 5000;

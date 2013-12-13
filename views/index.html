@@ -1,7 +1,9 @@
+		
 		<div class="row">
-			<div class="col-md-offset-3 col-md-4">
-					<h1 id="logo">high five : <span id="clampeval"></span></h1>
-					<p> will create a gif! <span id="clamp"></span></p>
+			<div class="col-md-offset-3 col-md-5">
+					<h1 id="logo">high five !</h1>
+					<p id="logo_p"> will create a gif <span id="clamp"></span>
+					<span id="clampeval"></span></p>
 			</div>
 		</div>
 
@@ -12,9 +14,21 @@
 				<canvas id="thecanvas" width="480" height="360"></canvas>    
 			</div> 
 		</div>
+		<br>
+
+		<div class="row" >
+			<div class="col-md-offset-3 col-md-6" id="gif_display" width="480" height="120">
+			</div>
+			<br>
+			<div id="audio_container"  class="col-md-offset-3 col-md-8">
+				<canvas id="audiograph" width="480" height="200" ></canvas ><br>
+				<input type = "button" value ="AudioGraph On" id="audioBtn">
+				<!-- Have a sound threshold slider here -->
+			</div>
+		</div>
 
 		<!-- Gif image container -->	
-		<div class="row" id="gif_container" >
+		<div class="row" id="gif_container" style="display:none" >
 			<div class="col-md-offset-3 col-md-6" id="gif_canvas_control">
 				<canvas id="gif_box"></canvas> 
 				<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTBYvYXjFCJ4y3nu9ae4TbVq20w1U93FL-tqGMTT13ijyVPioq5" width="480" height="360" id="gif_box_img">
@@ -25,17 +39,36 @@
 				<button id="retake" class="btn btn-success">retake</button>
 				</div>
 		</div>
+
+		<div class="row" >
+			<!-- Audio graph container -->
+			
+		</div>
 	
 	<style type="text/css">
 
 		#video_container, #gif_container{
 			position: relative;
 		}
+		#logo
+		{
+			padding-left: auto;
+			padding-right: auto;
+			word-spacing: 5px;
+		}
+		#logo_p
+		{
+			text-align: center;
+		}
+		#gif_container
+		{
+			left:-25px;
+		}
 
 		#gif_canvas_control
 		{
 			position:relative;
-			top:-1100px;
+			top:-1500px;
 
 		}
 		#gif_box
@@ -43,7 +76,8 @@
 			position: absolute;
 			width:520px;
 			height:480px;
-			z-index: -1;		
+			z-index: -1;
+			border-radius: 2px;		
 		}
 		#gif_box_img
 		{	
@@ -51,11 +85,13 @@
 			top:20px;
 			left:20px;
 			z-index:1000;
+			border-radius: 2px;
 		}
 		#form_container
 		{
 			position: relative;
 			z-index: 1000;
+
 		}
 		#upload /*upload button*/
 		{	
@@ -73,6 +109,19 @@
 			top: -73px;
 			left:330px;
 			text-transform: uppercase;
+		}
+		#gif_display
+		{
+			position: relative;
+			top:-7px;
+			
+			z-index:-3;
+		}
+		#audio_container
+		{
+			position: relative;
+			left:-2px;
+			top:10px;
 		}
 
 	</style>
@@ -98,14 +147,7 @@
 	    	<img id="img-15" src="">
 	 </div>	
 	 	
-		<div class="row" >
-			<!-- Audio graph container -->
-			<div id="audio_container"  class="col-md-offset-3 col-md-8">
-				<canvas id="audiograph" width="480" height="200" ></canvas ><br>
-				<input type = "button" value ="AudioGraph On" id="audioBtn">
-				<!-- Have a sound threshold slider here -->
-			</div>
-		</div>
+		
 
 		<script src="/js/gif.js"></script>
 		<script src="/js/gif.worker.js"></script>
@@ -115,12 +157,9 @@
 
 			h1{
 				margin-top:20px;
-			  font-family: "Rockwell";
-				  font-weight:bold;
-			font-size:60px;
-			text-align:center;
-
-
+			    font-weight:bold;
+				font-size:60px;
+				text-align:center;
 			}
 
 		</style>
