@@ -159,7 +159,7 @@
 					countThreshold ++;
 				}				
 			}
-			if(countThreshold > 26 && clamp_eval >15){
+			if(countThreshold > 26 && clamp_eval >22){
 				takePicture();
 			}
 			window.requestAnimationFrame(animate);		

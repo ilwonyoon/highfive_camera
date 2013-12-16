@@ -215,6 +215,15 @@ exports.update_index = function(req,res){
   res.redirect('/');
 }
 
+exports.sendSms = function(req, res){
+
+
+  templateData ={
+    
+  }
+  res.render('sendSms.html', templateData);
+}
+
 var cleanFileName = function(filename) {
     
     // cleans and generates new filename for example userID=abc123 and filename="My Pet Dog.jpg"
