@@ -71,6 +71,7 @@ app.get('/allgif/delete/:gif_id', routes.delete_gif);
 app.get('/mainpage_gifs',routes.mainpage_gifs);
 //update index from 0 ~ DB.length
 app.get('/update_index', routes.update_index);
+app.get('/about', routes.about);
 app.get('/sendSms', routes.sendSms);
 app.get("/sendSms/:firstName/:phoneNumber", function(req, res){
 

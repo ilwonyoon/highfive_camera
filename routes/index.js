@@ -215,6 +215,10 @@ exports.update_index = function(req,res){
   res.redirect('/');
 }
 
+exports.about = function(req,res){
+
+  res.render('about.html', templateData);
+}
 exports.sendSms = function(req, res){
 
 
