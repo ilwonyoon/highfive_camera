@@ -161,7 +161,7 @@
 					countThreshold ++;
 				}				
 			}
-			if(countThreshold > 25 && clamp_eval >50){
+			if(countThreshold > 25 && clamp_eval >100){
 				// takePicture();
 				console.log("countThreshold : " +countThreshold);
 				console.log("clamp eval??? : " + clamp_eval);
@@ -186,9 +186,9 @@
 
 			if(clamp_eval > 30 && clamp_eval <50) {
 				document.getElementById("clamp").innerHTML = "You can do better";
-			}else if(clamp_eval >50 && clamp_eval <80){
+			}else if(clamp_eval >50 && clamp_eval <120){
 				document.getElementById("clamp").innerHTML = "Ha? I can hear something!";
-			}else if(clamp_eval >80){
+			}else if(clamp_eval >100){
 				document.getElementById("clamp").innerHTML = "You rock!";
 			}
 			last_val = cur_val;
