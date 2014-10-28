@@ -138,7 +138,7 @@
 		};
 	// <=================Audio Animation===================>
 		// var threshold = 80;
-		var threshold = 100;
+		var threshold = 120;
 		var animate = function() {
 			
 			audiograph = document.getElementById('audiograph');
@@ -160,7 +160,7 @@
 					countThreshold ++;
 				}				
 			}
-			if(countThreshold > 26 && clamp_eval >22){
+			if(countThreshold > 28 && clamp_eval >22){
 				takePicture();
 			}
 			window.requestAnimationFrame(animate);		
