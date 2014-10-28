@@ -161,10 +161,10 @@
 					countThreshold ++;
 				}				
 			}
-			if(countThreshold > 25 && clamp_eval >100){
-				// takePicture();
-				console.log("countThreshold : " +countThreshold);
-				console.log("clamp eval??? : " + clamp_eval);
+			if(countThreshold > 25 && clamp_eval >110){
+				takePicture();
+				// console.log("countThreshold : " +countThreshold);
+				// console.log("clamp eval??? : " + clamp_eval);
 			}
 			window.requestAnimationFrame(animate);		
 		};
