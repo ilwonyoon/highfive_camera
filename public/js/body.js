@@ -132,7 +132,8 @@
 			console.log(frequencies.length);
 			analyser.getByteFrequencyData(frequencies);
 			window.requestAnimationFrame(animate);
-			setInterval(clampEvaluation,150);
+			// setInterval(clampEvaluation,150);
+			setInterval(clampEvaluation,250);
 			
 
 		};
@@ -161,7 +162,9 @@
 				}				
 			}
 			if(countThreshold > 25 && clamp_eval >50){
-				takePicture();
+				// takePicture();
+				console.log("countThreshold : " +countThreshold);
+				console.log("clamp eval??? : " + clamp_eval);
 			}
 			window.requestAnimationFrame(animate);		
 		};
@@ -215,7 +218,7 @@
 					$("#video_container").hide();
 					$("#gif_display").hide();
 					$("#audio_container").hide();
-					console.log(clamp_eval);
+
 			}
 				// else{
 				// 	endTime = new Date().getTime();
