@@ -137,7 +137,8 @@
 
 		};
 	// <=================Audio Animation===================>
-		var threshold = 80;
+		// var threshold = 80;
+		var threshold = 100;
 		var animate = function() {
 			
 			audiograph = document.getElementById('audiograph');
