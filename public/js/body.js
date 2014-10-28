@@ -215,6 +215,7 @@
 					$("#video_container").hide();
 					$("#gif_display").hide();
 					$("#audio_container").hide();
+					console.log(clamp_eval);
 			}
 				// else{
 				// 	endTime = new Date().getTime();
