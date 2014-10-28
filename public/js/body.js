@@ -137,7 +137,7 @@
 
 		};
 	// <=================Audio Animation===================>
-		var threshold = 90;
+		var threshold = 80;
 		// var threshold = 110;
 		var animate = function() {
 			
@@ -160,7 +160,7 @@
 					countThreshold ++;
 				}				
 			}
-			if(countThreshold > 26 && clamp_eval >22){
+			if(countThreshold > 25 && clamp_eval >22){
 				takePicture();
 			}
 			window.requestAnimationFrame(animate);		
