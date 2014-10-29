@@ -191,20 +191,19 @@
 					takePicture();
 				}
 			}
-
+			var responseText =[
+				"Am I hearing Something?",
+				"Come on, Louder!!",
+				":P"
+			]
 			if(clamp_eval > 40 && clamp_eval <= 80){
 				// console.log("count threshold : " +  countThreshold);
 				// console.log("clamp_eval: " +  clamp_eval);
-				document.getElementById("clamp").innerHTML = "Am I hearing something?";
+				Math.floor(Math.random()*audio_list.length)
+				document.getElementById("clamp").innerHTML = responseText[Math.floor(Math.random()*responseText.length)];
 				setTimeout(function(){
-					document.getElementById("clamp").innerHTML = " ";
+					document.getElementById("clamp").innerHTML = "";
 				}, 1000);
-			}else if(clamp_eval > 80){
-				document.getElementById("clamp").innerHTML = "Louder!!";
-				setTimeout(function(){
-					document.getElementById("clamp").innerHTML = " ";
-				}, 1000);
-
 			}
 			window.requestAnimationFrame(animate);		
 		};
