@@ -140,8 +140,6 @@
 	// <=================Audio Animation===================>
 		var threshold = 80;
 		// var threshold = 110;
-		var voice_test = false;
-		var voiceCount =0;
 		var animate = function() {
 			
 			audiograph = document.getElementById('audiograph');
@@ -161,21 +159,34 @@
 				
 				if(frequencies[i] >threshold) {
 					countThreshold ++;
+				}				
+			}
+			var voice_test = false;
+			var voiceCount = 0;
+
+			var filterVoice = function(){
+				analyser.getByteFrequencyData(frequencies);
+				for (var i = frequencies.length; i > 1; i--)
+				{	
+					if(Math.abs(frequencies[i] - frequencies[i-1]) > 20){
+						voiceCount++;
+					}
 				}
+				console.log("voice Count : " + voiceCount);
 			}
 
-			filterVoice();
-				
 			if(countThreshold > 27 && clamp_eval >110){
 				document.getElementById("clamp").innerHTML = "YOU ROCK!!";
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = " ";
 				}, 1000);
 				takePicture();
+				console.log("count threshold : " +  countThreshold);
+				console.log("clamp_eval: " +  clamp_eval);
 			}
 
 			if(clamp_eval > 40){
-				// filterVoice();
+				filterVoice();
 				// document.getElementById("clamp").innerHTML = "Am I hearing something?";
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = " ";
@@ -203,6 +214,15 @@
 				cur_val += frequencies[i];			
 			}
 			clamp_eval= Math.floor(Math.abs((cur_val-last_val)/32));
+			// document.getElementById('clampeval').innerHTML = clamp_eval;
+
+			// if(clamp_eval > 30 && clamp_eval <50) {
+			// 	document.getElementById("clamp").innerHTML = "You can do better";
+			// }else if(clamp_eval >50 && clamp_eval <120){
+			// 	document.getElementById("clamp").innerHTML = "Ha? I can hear something!";
+			// }else if(clamp_eval >100){
+			// 	document.getElementById("clamp").innerHTML = "You rock!";
+			// }
 			last_val = cur_val;
 		};
 
@@ -269,24 +289,6 @@
 			});
 
 		});
-
-
-		var filterVoice = function(){
-			analyser.getByteFrequencyData(frequencies);
-			for (var i = frequencies.length; i > 1; i--){	
-				if(Math.abs(frequencies[i] - frequencies[i-1]) > 20)
-				{
-					voiceCount++;
-				}
-			}
-			// if(voiceCount > 10){
-			// 	voice_test = true;
-			// }else{
-			// 	voice_test = false;
-			// }
-			console.log("voice : " + voiceCount);
-
-		}
 
 		window.addEventListener('load', initWebRTC, false);
 
