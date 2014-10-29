@@ -201,7 +201,7 @@
    				 setInterval(function(){
    				 	resIndex = Math.floor(Math.random()*responseText.length);
    				 }, 3000);
-}			}
+			}
 			
 			if(clamp_eval > 40 && clamp_eval <= 80){
 				// console.log("count threshold : " +  countThreshold);
