@@ -169,12 +169,12 @@
 				takePicture();
 			}
 
-			if(clamp_eval > 60){
+			if(clamp_eval > 30){
 				document.getElementById("clamp").innerHTML = "Am I hearing something?";
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = "";
 				}, 1000);
-			}else if(clamp_eval > 90){
+			}else if(clamp_eval > 80){
 				document.getElementById("clamp").innerHTML = "Almost!!";
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = "";
