@@ -199,7 +199,7 @@
 			if(clamp_eval > 40 && clamp_eval <= 80){
 				// console.log("count threshold : " +  countThreshold);
 				// console.log("clamp_eval: " +  clamp_eval);
-				Math.floor(Math.random()*audio_list.length)
+				
 				document.getElementById("clamp").innerHTML = responseText[Math.floor(Math.random()*responseText.length)];
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = "";
