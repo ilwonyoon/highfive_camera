@@ -178,6 +178,8 @@
 					document.getElementById("clamp").innerHTML = " ";
 				}, 1000);
 				takePicture();
+				console.log("count threshold : " +  countThreshold);
+				console.log("clamp_eval: " +  clamp_eval);
 			}
 
 			if(clamp_eval > 40){
