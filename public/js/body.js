@@ -279,12 +279,12 @@
 					voiceCount++;
 				}
 			}
-			if(voiceCount > 10){
-				voice_test = true;
-			}else{
-				voice_test = false;
-			}
-			console.log("voice : " + voice_test);
+			// if(voiceCount > 10){
+			// 	voice_test = true;
+			// }else{
+			// 	voice_test = false;
+			// }
+			console.log("voice : " + voiceCount);
 
 		}
 
