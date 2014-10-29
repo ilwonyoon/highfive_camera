@@ -184,21 +184,19 @@
 				console.log(filterVoice());
 				if(filterVoice() === false){
 					document.getElementById("clamp").innerHTML = "YOU ROCK!!";
+
 					setTimeout(function(){
-					document.getElementById("clamp").innerHTML = " ";
-				}, 1000);
-				takePicture();
+						document.getElementById("clamp").innerHTML = " ";
+						}, 1000);
+					
+					takePicture();
 				}
-				else{
-					console.log("this seems to be a voice..");
-				}
-				// console.log("count threshold : " +  countThreshold);
-				// console.log("clamp_eval: " +  clamp_eval);
 			}
 
 			if(clamp_eval > 40){
-				
-				// document.getElementById("clamp").innerHTML = "Am I hearing something?";
+				console.log("count threshold : " +  countThreshold);
+				console.log("clamp_eval: " +  clamp_eval);
+				document.getElementById("clamp").innerHTML = "Am I hearing something?";
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = " ";
 				}, 1000);
