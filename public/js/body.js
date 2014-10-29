@@ -183,12 +183,13 @@
 			if(countThreshold > 27 && clamp_eval >110){
 				console.log(filterVoice());
 				if(filterVoice() === false){
-					document.getElementById("clamp").innerHTML = "YOU ROCK!!";
+					takePicture();
+				}else{
+					document.getElementById("clamp").innerHTML = "Don't speak, HIGH FIVE!";
 					setTimeout(function(){
 						document.getElementById("clamp").innerHTML = " ";
 						}, 1000);
 					
-					takePicture();
 				}
 			}
 
