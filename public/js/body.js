@@ -162,9 +162,24 @@
 				}				
 			}
 			if(countThreshold > 25 && clamp_eval >110){
+				document.getElementById("clamp").innerHTML = "YOU ROCK!!";
+				setTimeout(function(){
+					document.getElementById("clamp").innerHTML = "";
+				}, 1000);
 				takePicture();
-				// console.log("countThreshold : " +countThreshold);
-				// console.log("clamp eval??? : " + clamp_eval);
+			}
+
+			if(clamp_eval > 60){
+				document.getElementById("clamp").innerHTML = "Am I hearing something?";
+				setTimeout(function(){
+					document.getElementById("clamp").innerHTML = "";
+				}, 1000);
+			}else if(clamp_eval > 90){
+				document.getElementById("clamp").innerHTML = "Almost!!";
+				setTimeout(function(){
+					document.getElementById("clamp").innerHTML = "";
+				}, 1000);
+
 			}
 			window.requestAnimationFrame(animate);		
 		};
@@ -182,15 +197,15 @@
 				cur_val += frequencies[i];			
 			}
 			clamp_eval= Math.floor(Math.abs((cur_val-last_val)/32));
-			document.getElementById('clampeval').innerHTML = clamp_eval;
+			// document.getElementById('clampeval').innerHTML = clamp_eval;
 
-			if(clamp_eval > 30 && clamp_eval <50) {
-				document.getElementById("clamp").innerHTML = "You can do better";
-			}else if(clamp_eval >50 && clamp_eval <120){
-				document.getElementById("clamp").innerHTML = "Ha? I can hear something!";
-			}else if(clamp_eval >100){
-				document.getElementById("clamp").innerHTML = "You rock!";
-			}
+			// if(clamp_eval > 30 && clamp_eval <50) {
+			// 	document.getElementById("clamp").innerHTML = "You can do better";
+			// }else if(clamp_eval >50 && clamp_eval <120){
+			// 	document.getElementById("clamp").innerHTML = "Ha? I can hear something!";
+			// }else if(clamp_eval >100){
+			// 	document.getElementById("clamp").innerHTML = "You rock!";
+			// }
 			last_val = cur_val;
 		};
 
