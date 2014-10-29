@@ -162,24 +162,10 @@
 				if(frequencies[i] >threshold) {
 					countThreshold ++;
 				}
-				if(i === frequencies.length){
-					continue;
-				}else{
-						if(Math.abs(frequencies[i+1] - frequencies[i]) > 20)
-					{
-						voiceCount++;
-					}
-				}
 			}
 
-			if(voiceCount > 10){
-				voice_test = true;
-				console.log("this is voice");
-			}else{
-				voice_test = false;
-				console.log("not voice");
-			}
-			
+			filterVoice();
+				
 			if(countThreshold > 27 && clamp_eval >110){
 				document.getElementById("clamp").innerHTML = "YOU ROCK!!";
 				setTimeout(function(){
@@ -293,10 +279,12 @@
 					voiceCount++;
 				}
 			}
-			if(voiceCount > 15){
+			if(voiceCount > 10){
 				voice_test = true;
+			}else{
+				voice_test = false;
 			}
-			console.log("voice Count : " + voiceCount);
+			console.log("voice : " + voice_test);
 
 		}
 
