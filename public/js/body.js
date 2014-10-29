@@ -161,23 +161,34 @@
 					countThreshold ++;
 				}				
 			}
-			if(countThreshold > 25 && clamp_eval >110){
+			var voice_test;
+			var voiceGain;
+
+			var filterVoice = function(){
+				analyser.getByteFrequencyData(frequencies);
+				voice_test = false;
+				for (var i = 0; i < frequencies.length; i++)
+				{	
+					voiceGain += frequencies[i];			
+				}
+			}
+			if(countThreshold > 27 && clamp_eval >110){
 				document.getElementById("clamp").innerHTML = "YOU ROCK!!";
 				setTimeout(function(){
-					document.getElementById("clamp").innerHTML = "";
+					document.getElementById("clamp").innerHTML = " ";
 				}, 1000);
 				takePicture();
 			}
 
-			if(clamp_eval > 30){
+			if(clamp_eval > 40){
 				document.getElementById("clamp").innerHTML = "Am I hearing something?";
 				setTimeout(function(){
-					document.getElementById("clamp").innerHTML = "";
+					document.getElementById("clamp").innerHTML = " ";
 				}, 1000);
 			}else if(clamp_eval > 80){
 				document.getElementById("clamp").innerHTML = "Almost!!";
 				setTimeout(function(){
-					document.getElementById("clamp").innerHTML = "";
+					document.getElementById("clamp").innerHTML = " ";
 				}, 1000);
 
 			}
