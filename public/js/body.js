@@ -139,7 +139,7 @@
 		};
 	// <=================Audio Animation===================>
 		var threshold = 80;
-		var resIndex = 1;
+		var resIndex;
 		// var threshold = 110;
 		var animate = function() {
 			
@@ -190,6 +190,11 @@
 						}, 1000);
 					
 					takePicture();
+				}else{
+					document.getElementById("clamp").innerHTML = "Don't Speak! High Five!";
+					setTimeout(function(){
+						document.getElementById("clamp").innerHTML = "";
+					}, 1000);
 				}
 			}
 			var responseText =[
@@ -197,11 +202,13 @@
 				"Come on, Louder!!",
 				":P"
 			]
-			function myFunction() {
-   				 setInterval(function(){
-   				 	resIndex = Math.floor(Math.random()*responseText.length);
-   				 }, 3000);
-			}
+			
+			
+   			setInterval(function(){
+   				 resIndex = Math.floor(Math.random()*responseText.length);
+   			}, 3000);
+   			console.log(resIndex);
+			
 			
 			if(clamp_eval > 40 && clamp_eval <= 80){
 				// console.log("count threshold : " +  countThreshold);
