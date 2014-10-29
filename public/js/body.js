@@ -139,6 +139,7 @@
 		};
 	// <=================Audio Animation===================>
 		var threshold = 80;
+		var resIndex = 1;
 		// var threshold = 110;
 		var animate = function() {
 			
@@ -196,11 +197,17 @@
 				"Come on, Louder!!",
 				":P"
 			]
+			function myFunction() {
+   				 setInterval(function(){
+   				 	resIndex = Math.floor(Math.random()*responseText.length);
+   				 }, 3000);
+}			}
+			
 			if(clamp_eval > 40 && clamp_eval <= 80){
 				// console.log("count threshold : " +  countThreshold);
 				// console.log("clamp_eval: " +  clamp_eval);
-				
-				document.getElementById("clamp").innerHTML = responseText[Math.floor(Math.random()*responseText.length)];
+
+				document.getElementById("clamp").innerHTML = responseText[resIndex];
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = "";
 				}, 1000);
