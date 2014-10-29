@@ -26,11 +26,11 @@
 		</div>
 		<br>
 
-		<div class="row" >
-			<div class="col-md-offset-3 col-md-6" id="gif_display" width="480" height="120">
+		<div class="row" style="text-align:center;">
+			<div class="col-md-offset-3 col-md-6" id="gif_display" width="480" height="120" style="display:inline-block">
 			</div>
 			<br>
-			<div id="audio_container"  class="col-md-offset-3 col-md-8">
+			<div id="audio_container"  class="col-md-offset-3 col-md-8" style="display:inline-block">
 				<canvas id="audiograph" width="480" height="200" ></canvas ><br>
 				<input type = "button" value ="AudioGraph On" id="audioBtn">
 				<!-- Have a sound threshold slider here -->
@@ -38,8 +38,8 @@
 		</div>
 
 		<!-- Gif image container -->	
-		<div class="row" id="gif_container" style="display:none" >
-			<div class="col-md-offset-3 col-md-6" id="gif_canvas_control">
+		<div class="row" id="gif_container" style="display:none;text-align:center;" >
+			<div class="col-md-offset-3 col-md-6" id="gif_canvas_control" style="display:inline-block;">
 				<canvas id="gif_box"></canvas> 
 				<img src="" width="480" height="360" id="gif_box_img">
 		    	<form method="POST" action="/newgif" enctype="multipart/form-data" id="form_container">
