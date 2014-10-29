@@ -184,7 +184,6 @@
 				console.log(filterVoice());
 				if(filterVoice() === false){
 					document.getElementById("clamp").innerHTML = "YOU ROCK!!";
-
 					setTimeout(function(){
 						document.getElementById("clamp").innerHTML = " ";
 						}, 1000);
@@ -194,14 +193,14 @@
 			}
 
 			if(clamp_eval > 40 && clamp_eval <= 80){
-				console.log("count threshold : " +  countThreshold);
-				console.log("clamp_eval: " +  clamp_eval);
+				// console.log("count threshold : " +  countThreshold);
+				// console.log("clamp_eval: " +  clamp_eval);
 				document.getElementById("clamp").innerHTML = "Am I hearing something?";
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = " ";
 				}, 1000);
 			}else if(clamp_eval > 80){
-				document.getElementById("clamp").innerHTML = "Almost!!";
+				document.getElementById("clamp").innerHTML = "Louder!!";
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = " ";
 				}, 1000);
