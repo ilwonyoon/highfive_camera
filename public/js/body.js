@@ -176,12 +176,12 @@
 				}else{
 					isVoice = false;
 				}
-				console.log("voice Count : " + voiceCount);
+				// console.log("voice Count : " + voiceCount);
 				return isVoice;
 				
 			}
-			filterVoice();
 			if(countThreshold > 27 && clamp_eval >110){
+				console.log(filterVoice());
 				if(filterVoice() === false){
 					document.getElementById("clamp").innerHTML = "YOU ROCK!!";
 					setTimeout(function(){
