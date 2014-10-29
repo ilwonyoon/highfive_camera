@@ -11,17 +11,18 @@
 						</span>
 						<br>
 					<img width="100px"src="../img/highfive_icon2x.png"></h1>
-					<p id="logo_p" style="margin:0;padding:0;">
-					<span id="clamp"style="margin:0;padding:0;"></span>
+					<!-- <p id="logo_p" style="margin:0;padding:0;">
+					<span id="clamp"style="margin:0;padding:0;"></span> -->
 				</p>
 			</div>
 		</div>
 
 	<!-- Video Container -->
 		<div class="row" id="video_container">
-			<div class="col-md-offset-3 col-md-6" style="text-align:center;"> 
+			<div class="col-md-offset-3 col-md-6" style="text-align:center;position:relative;"> 
 				<video id="thevideo" width="640" height="480"autoplay  muted="true" style="display:none"></video>
 				<canvas id="thecanvas" width="480" height="360" style="display:inline-block"></canvas>    
+				<p id="clamp" style="width:480px;height:200px;line-height:200px;position:absolute;top:45%;left:30%"></p>
 			</div> 
 		</div>
 		<br>
@@ -30,9 +31,10 @@
 			<div class="col-md-offset-3 col-md-6" id="gif_display" width="480" height="120" style="display:inline-block">
 			</div>
 			<br>
-			<div id="audio_container"  class="col-md-offset-3 col-md-6" style="display:inline-block">
+			<div id="audio_container"  class="col-md-offset-3 col-md-6" style="display:inline-block;">
 				<canvas id="audiograph" width="480" height="200" ></canvas ><br>
 				<input type = "button" value ="AudioGraph On" id="audioBtn">
+				
 				<!-- Have a sound threshold slider here -->
 			</div>
 		</div>
