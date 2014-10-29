@@ -163,17 +163,18 @@
 			}
 			var voice_test;
 			var voiceGain;
-			var voiceCount;
+			var voiceCount =0;
 
 			var filterVoice = function(){
 				analyser.getByteFrequencyData(frequencies);
 				for (var i = frequencies.length; i > 1; i--)
 				{	
 					if(Math.abs(frequencies[i] - frequencies[i-1]) > 20){
-						voiceCount ++;
+						voiceCount++;
 					}
-					console.log(voiceCount);
+					
 				}
+				console.log(voiceCount);
 			}
 			if(countThreshold > 27 && clamp_eval >110){
 				document.getElementById("clamp").innerHTML = "YOU ROCK!!";
