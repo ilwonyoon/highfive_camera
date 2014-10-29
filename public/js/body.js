@@ -193,7 +193,7 @@
 				}
 			}
 
-			if(clamp_eval > 40 && clamp_eval =< 80){
+			if(clamp_eval > 40 && clamp_eval <= 80){
 				console.log("count threshold : " +  countThreshold);
 				console.log("clamp_eval: " +  clamp_eval);
 				document.getElementById("clamp").innerHTML = "Am I hearing something?";
