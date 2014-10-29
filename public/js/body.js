@@ -161,32 +161,43 @@
 					countThreshold ++;
 				}				
 			}
-			var voice_test = false;
+			var isVoice = false;
 			var voiceCount = 0;
 
 			var filterVoice = function(){
 				analyser.getByteFrequencyData(frequencies);
-				for (var i = frequencies.length; i > 1; i--)
-				{	
+				for (var i = frequencies.length; i > 1; i--){	
 					if(Math.abs(frequencies[i] - frequencies[i-1]) > 20){
 						voiceCount++;
 					}
 				}
-				console.log("voice Count : " + voiceCount);
+				if(voiceCount > 11){
+					isVoice = true;
+				}else{
+					isVoice = false;
+				}
+				// console.log("voice Count : " + voiceCount);
+				return isVoice;
+				
 			}
 
 			if(countThreshold > 27 && clamp_eval >110){
-				document.getElementById("clamp").innerHTML = "YOU ROCK!!";
-				setTimeout(function(){
+				if(filterVoice() === false){
+					document.getElementById("clamp").innerHTML = "YOU ROCK!!";
+					setTimeout(function(){
 					document.getElementById("clamp").innerHTML = " ";
 				}, 1000);
 				takePicture();
-				console.log("count threshold : " +  countThreshold);
-				console.log("clamp_eval: " +  clamp_eval);
+				}
+				else{
+					console.log("this seems to be a voice..");
+				}
+				// console.log("count threshold : " +  countThreshold);
+				// console.log("clamp_eval: " +  clamp_eval);
 			}
 
 			if(clamp_eval > 40){
-				filterVoice();
+				// filterVoice();
 				// document.getElementById("clamp").innerHTML = "Am I hearing something?";
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = " ";
