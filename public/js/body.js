@@ -197,7 +197,7 @@
 			}
 
 			if(clamp_eval > 40){
-				// filterVoice();
+				filterVoice();
 				// document.getElementById("clamp").innerHTML = "Am I hearing something?";
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = " ";
