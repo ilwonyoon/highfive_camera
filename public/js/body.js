@@ -171,7 +171,7 @@
 						voiceCount++;
 					}
 				}
-				if(voiceCount > 11){
+				if(voiceCount > 6){
 					isVoice = true;
 				}else{
 					isVoice = false;
