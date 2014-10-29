@@ -139,7 +139,6 @@
 		};
 	// <=================Audio Animation===================>
 		var threshold = 80;
-		var resIndex;
 		// var threshold = 110;
 		var animate = function() {
 			
@@ -190,29 +189,22 @@
 						}, 1000);
 					
 					takePicture();
-				}else{
-					document.getElementById("clamp").innerHTML = "Don't Speak! High Five!";
-					setTimeout(function(){
-						document.getElementById("clamp").innerHTML = "";
-					}, 1000);
 				}
 			}
-			var responseText =[
-				"Am I hearing Something?",
-				"Come on, Louder!!",
-				":P"
-			];
-			
-			resIndex = Math.floor(Math.random()*responseText.length);
-			console.log(resIndex);
+
 			if(clamp_eval > 40 && clamp_eval <= 80){
 				// console.log("count threshold : " +  countThreshold);
 				// console.log("clamp_eval: " +  clamp_eval);
-
-				document.getElementById("clamp").innerHTML = responseText[resIndex];
+				document.getElementById("clamp").innerHTML = "Am I hearing something?";
 				setTimeout(function(){
-					document.getElementById("clamp").innerHTML = "";
+					document.getElementById("clamp").innerHTML = " ";
 				}, 1000);
+			}else if(clamp_eval > 80){
+				document.getElementById("clamp").innerHTML = "Louder!!";
+				setTimeout(function(){
+					document.getElementById("clamp").innerHTML = " ";
+				}, 1000);
+
 			}
 			window.requestAnimationFrame(animate);		
 		};
