@@ -201,15 +201,10 @@
 				"Am I hearing Something?",
 				"Come on, Louder!!",
 				":P"
-			]
+			];
 			
-			
-   			setInterval(function(){
-   				 resIndex = Math.floor(Math.random()*responseText.length);
-   			}, 3000);
-   			console.log(resIndex);
-			
-			
+			resIndex = Math.floor(Math.random()*responseText.length);
+			console.log(resIndex);
 			if(clamp_eval > 40 && clamp_eval <= 80){
 				// console.log("count threshold : " +  countThreshold);
 				// console.log("clamp_eval: " +  clamp_eval);
