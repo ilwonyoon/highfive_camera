@@ -163,13 +163,16 @@
 			}
 			var voice_test;
 			var voiceGain;
+			var voiceCount;
 
 			var filterVoice = function(){
 				analyser.getByteFrequencyData(frequencies);
-				voice_test = false;
-				for (var i = 0; i < frequencies.length; i++)
+				for (var i = frequencies.length; i > 1; i--)
 				{	
-					voiceGain += frequencies[i];			
+					if(Math.abs(frequencies[i] - frequencies[i-1]) > 20){
+						voiceCount ++;
+					}
+					console.log(voiceCount);
 				}
 			}
 			if(countThreshold > 27 && clamp_eval >110){
@@ -183,7 +186,8 @@
 			}
 
 			if(clamp_eval > 40){
-				document.getElementById("clamp").innerHTML = "Am I hearing something?";
+				filterVoice();
+				// document.getElementById("clamp").innerHTML = "Am I hearing something?";
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = " ";
 				}, 1000);
