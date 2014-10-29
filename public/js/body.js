@@ -176,11 +176,11 @@
 				}else{
 					isVoice = false;
 				}
-				// console.log("voice Count : " + voiceCount);
+				console.log("voice Count : " + voiceCount);
 				return isVoice;
 				
 			}
-
+			filterVoice();
 			if(countThreshold > 27 && clamp_eval >110){
 				if(filterVoice() === false){
 					document.getElementById("clamp").innerHTML = "YOU ROCK!!";
@@ -197,7 +197,7 @@
 			}
 
 			if(clamp_eval > 40){
-				filterVoice();
+				
 				// document.getElementById("clamp").innerHTML = "Am I hearing something?";
 				setTimeout(function(){
 					document.getElementById("clamp").innerHTML = " ";
